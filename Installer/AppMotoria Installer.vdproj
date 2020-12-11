@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_88BF97D0C79F4A7E85B8E523EBF3BA4D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E072FAA9FCA22395FA070E2D93B6305D"
         "OwnerKey" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,12 +46,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F7EBE79544EBB0C154120DE290FA0CBE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -53,6 +53,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E072FAA9FCA22395FA070E2D93B6305D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F7EBE79544EBB0C154120DE290FA0CBE"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -112,6 +118,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -146,6 +160,26 @@
             {
             "SourcePath" = "8:..\\AppMotoria\\Img\\logo.ico"
             "TargetName" = "8:logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88BF97D0C79F4A7E85B8E523EBF3BA4D"
+            {
+            "SourcePath" = "8:..\\AppMotoria\\Account.mdb"
+            "TargetName" = "8:Account.mdb"
             "Tag" = "8:"
             "Folder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
             "Condition" = "8:"
@@ -232,7 +266,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_1958FD5700F74091B4B4998A363C7F2F"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -290,9 +324,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:AppMotoria Installer"
+        "ProductName" = "8:AppMotoria"
         "ProductCode" = "8:{A2477C0E-CC18-4464-A1BB-A8F05371588A}"
-        "PackageCode" = "8:{75281198-6D63-4EE7-B3E9-E1FA689D7DA4}"
+        "PackageCode" = "8:{AE37A482-1860-4495-A94E-66951EE59EC6}"
         "UpgradeCode" = "8:{B16C1311-CDDA-4CD0-BFC4-EE24F3D21E45}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -300,12 +334,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:JustEdm"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:AppMotoria Installer"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:JustEdm"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -313,7 +347,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
