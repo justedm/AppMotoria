@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AppMotoria", "AppMotoria\AppMotoria.vbproj", "{9A67C65C-B51B-48D6-B39A-4CE47BF038B3}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AppMotoria Installer", "AppMotoria Installer\AppMotoria Installer.vdproj", "{3EC2AEB0-7768-43BA-8389-76581B145224}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AppMotoria Installer", "AppMotoria\Installer\AppMotoria Installer.vdproj", "{3EC2AEB0-7768-43BA-8389-76581B145224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

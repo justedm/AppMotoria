@@ -180,6 +180,7 @@
       <DependentUpon>AccountDataSet.xsd</DependentUpon>
     </None>
     <None Include="AppMotoria_TemporaryKey.pfx" />
+    <None Include="Installer\AppMotoria Installer.msi" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -207,6 +208,7 @@
     <Content Include="Img\dati-clicked.png" />
     <Content Include="Img\dati.png" />
     <Content Include="Img\user-icon.png" />
+    <Content Include="Installer\setup.exe" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
