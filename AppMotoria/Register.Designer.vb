@@ -22,6 +22,7 @@ Partial Class Register
     'Non modificarla mediante l'editor del codice.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Register))
         Me.btnClose = New System.Windows.Forms.PictureBox()
         Me.Logo = New System.Windows.Forms.PictureBox()
         Me.usrBox = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
@@ -221,6 +222,7 @@ Partial Class Register
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.ShapeContainer1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Register"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Register"
