@@ -36,6 +36,9 @@ Partial Class Login
         Me.eyeSetting = New System.Windows.Forms.PictureBox()
         Me.btnClose = New System.Windows.Forms.PictureBox()
         Me.Logo = New System.Windows.Forms.PictureBox()
+        Me.lblMsgPassword = New System.Windows.Forms.Label()
+        Me.lblMsgUsername = New System.Windows.Forms.Label()
+        Me.lblMsgLogin = New System.Windows.Forms.Label()
         CType(Me.eyeSetting, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Logo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +61,7 @@ Partial Class Login
         Me.pwdBox.BorderColor = System.Drawing.Color.FromArgb(CType(CType(106, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(155, Byte), Integer))
         Me.pwdBox.CornerRadius = 3
         Me.pwdBox.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.pwdBox.Location = New System.Drawing.Point(44, 186)
+        Me.pwdBox.Location = New System.Drawing.Point(44, 184)
         Me.pwdBox.Name = "pwdBox"
         Me.pwdBox.SelectionColor = System.Drawing.Color.Transparent
         Me.pwdBox.Size = New System.Drawing.Size(199, 32)
@@ -70,7 +73,7 @@ Partial Class Login
         Me.usrBox.BorderColor = System.Drawing.Color.FromArgb(CType(CType(106, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(155, Byte), Integer))
         Me.usrBox.CornerRadius = 3
         Me.usrBox.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.usrBox.Location = New System.Drawing.Point(44, 138)
+        Me.usrBox.Location = New System.Drawing.Point(44, 133)
         Me.usrBox.Name = "usrBox"
         Me.usrBox.SelectionColor = System.Drawing.Color.Transparent
         Me.usrBox.Size = New System.Drawing.Size(199, 32)
@@ -81,7 +84,7 @@ Partial Class Login
         Me.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtUsername.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer))
-        Me.txtUsername.Location = New System.Drawing.Point(47, 142)
+        Me.txtUsername.Location = New System.Drawing.Point(47, 137)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(194, 25)
         Me.txtUsername.TabIndex = 2
@@ -94,7 +97,7 @@ Partial Class Login
         Me.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPassword.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer))
-        Me.txtPassword.Location = New System.Drawing.Point(47, 190)
+        Me.txtPassword.Location = New System.Drawing.Point(47, 188)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(194, 25)
         Me.txtPassword.TabIndex = 4
@@ -108,7 +111,7 @@ Partial Class Login
         Me.lblLogin.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblLogin.Font = New System.Drawing.Font("Calibri", 15.0!)
         Me.lblLogin.ForeColor = System.Drawing.Color.White
-        Me.lblLogin.Location = New System.Drawing.Point(45, 262)
+        Me.lblLogin.Location = New System.Drawing.Point(45, 265)
         Me.lblLogin.Name = "lblLogin"
         Me.lblLogin.Padding = New System.Windows.Forms.Padding(72, 5, 72, 5)
         Me.lblLogin.Size = New System.Drawing.Size(198, 34)
@@ -150,7 +153,7 @@ Partial Class Login
         '
         Me.checkRicordami.AutoSize = True
         Me.checkRicordami.ForeColor = System.Drawing.Color.White
-        Me.checkRicordami.Location = New System.Drawing.Point(45, 226)
+        Me.checkRicordami.Location = New System.Drawing.Point(44, 223)
         Me.checkRicordami.Name = "checkRicordami"
         Me.checkRicordami.Size = New System.Drawing.Size(73, 17)
         Me.checkRicordami.TabIndex = 10
@@ -161,7 +164,7 @@ Partial Class Login
         '
         Me.eyeSetting.Cursor = System.Windows.Forms.Cursors.Hand
         Me.eyeSetting.Image = CType(resources.GetObject("eyeSetting.Image"), System.Drawing.Image)
-        Me.eyeSetting.Location = New System.Drawing.Point(218, 192)
+        Me.eyeSetting.Location = New System.Drawing.Point(218, 190)
         Me.eyeSetting.Name = "eyeSetting"
         Me.eyeSetting.Size = New System.Drawing.Size(25, 22)
         Me.eyeSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -189,6 +192,36 @@ Partial Class Login
         Me.Logo.TabIndex = 3
         Me.Logo.TabStop = False
         '
+        'lblMsgPassword
+        '
+        Me.lblMsgPassword.AutoSize = True
+        Me.lblMsgPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblMsgPassword.Location = New System.Drawing.Point(137, 223)
+        Me.lblMsgPassword.Name = "lblMsgPassword"
+        Me.lblMsgPassword.Size = New System.Drawing.Size(104, 13)
+        Me.lblMsgPassword.TabIndex = 12
+        Me.lblMsgPassword.Text = "Inserisci la password"
+        '
+        'lblMsgUsername
+        '
+        Me.lblMsgUsername.AutoSize = True
+        Me.lblMsgUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblMsgUsername.Location = New System.Drawing.Point(127, 168)
+        Me.lblMsgUsername.Name = "lblMsgUsername"
+        Me.lblMsgUsername.Size = New System.Drawing.Size(114, 13)
+        Me.lblMsgUsername.TabIndex = 13
+        Me.lblMsgUsername.Text = "Inserisci il nome utente"
+        '
+        'lblMsgLogin
+        '
+        Me.lblMsgLogin.AutoSize = True
+        Me.lblMsgLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblMsgLogin.Location = New System.Drawing.Point(48, 250)
+        Me.lblMsgLogin.Name = "lblMsgLogin"
+        Me.lblMsgLogin.Size = New System.Drawing.Size(85, 13)
+        Me.lblMsgLogin.TabIndex = 14
+        Me.lblMsgLogin.Text = "Dati utente errati"
+        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -196,6 +229,9 @@ Partial Class Login
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(281, 376)
         Me.ControlBox = False
+        Me.Controls.Add(Me.lblMsgLogin)
+        Me.Controls.Add(Me.lblMsgUsername)
+        Me.Controls.Add(Me.lblMsgPassword)
         Me.Controls.Add(Me.eyeSetting)
         Me.Controls.Add(Me.checkRicordami)
         Me.Controls.Add(Me.lblForgot)
@@ -232,4 +268,7 @@ Partial Class Login
     Friend WithEvents lblForgot As Label
     Friend WithEvents checkRicordami As CheckBox
     Friend WithEvents eyeSetting As PictureBox
+    Friend WithEvents lblMsgPassword As Label
+    Friend WithEvents lblMsgUsername As Label
+    Friend WithEvents lblMsgLogin As Label
 End Class

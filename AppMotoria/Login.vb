@@ -1,10 +1,10 @@
 ﻿Imports System.Data.OleDb
 Imports System.Runtime.InteropServices
 Public Class Login
-
+    'Boolean for eyeSetting
     Dim pwdShow = False
 
-    'Movimento Form
+#Region "Movimento form"
     Public Const WM_NCLBUTTONDOWN As Integer = 161
     Public Const HT_CAPTION As Integer = 2
 
@@ -28,11 +28,15 @@ Public Class Login
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0)
         End If
     End Sub
-    'Fine Movimento Form
+#End Region
 
+#Region "Form load"
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TextBox1.Select()
         eyeSetting.Visible = False
+        lblMsgUsername.Visible = False
+        lblMsgPassword.Visible = False
+        lblMsgLogin.Visible = False
 
         If My.Settings.checkRicordamiSett = True Then
             If My.Settings.savedUsername <> "" And My.Settings.savedPassword <> "" Then
@@ -41,11 +45,21 @@ Public Class Login
             End If
         End If
     End Sub
+#End Region
 
+#Region "Close button"
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         End
     End Sub
+    Private Sub btnClose_MouseEnter(sender As Object, e As EventArgs) Handles btnClose.MouseEnter
+        btnClose.Image = My.Resources.ResourceManager.GetObject("close_red")
+    End Sub
+    Private Sub btnClose_MouseLeave(sender As Object, e As EventArgs) Handles btnClose.MouseLeave
+        btnClose.Image = My.Resources.ResourceManager.GetObject("close")
+    End Sub
+#End Region
 
+#Region "Inserimento dati"
     Private Sub usrBox_Click(sender As Object, e As EventArgs) Handles usrBox.Click
         txtUsername.Select()
     End Sub
@@ -59,6 +73,10 @@ Public Class Login
             txtUsername.ForeColor = Color.FromArgb(224, 224, 224)
             txtUsername.Clear()
         End If
+        lblMsgUsername.Visible = False
+    End Sub
+    Private Sub txtUsername_TextChanged(sender As Object, e As EventArgs) Handles txtUsername.TextChanged
+        If lblMsgLogin.Visible = True Then lblMsgLogin.Visible = False
     End Sub
 
     Private Sub txtPassword_Enter(sender As Object, e As EventArgs) Handles txtPassword.Enter
@@ -67,58 +85,68 @@ Public Class Login
             txtPassword.Clear()
             txtPassword.UseSystemPasswordChar = True
         End If
+        lblMsgPassword.Visible = False
     End Sub
     Private Sub txtPassword_TextChanged(sender As Object, e As EventArgs) Handles txtPassword.TextChanged
         If txtPassword.Text <> "" Then
             eyeSetting.Visible = True
         End If
+        If lblMsgLogin.Visible = True Then lblMsgLogin.Visible = False
     End Sub
+#End Region
 
-    Private Sub btnClose_MouseEnter(sender As Object, e As EventArgs) Handles btnClose.MouseEnter
-        btnClose.Image = My.Resources.ResourceManager.GetObject("close_red")
-    End Sub
-    Private Sub btnClose_MouseLeave(sender As Object, e As EventArgs) Handles btnClose.MouseLeave
-        btnClose.Image = My.Resources.ResourceManager.GetObject("close")
-    End Sub
-
+#Region "Login button"
     Private Sub lblLogin_Click(sender As Object, e As EventArgs) Handles lblLogin.Click
-        If (txtUsername.Text <> "" And txtPassword.Text <> "") Then
-            If (txtUsername.Text <> "Username") Then
-                If (txtPassword.Text <> "Password") Then
-                    Dim val As Integer
 
-                    Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist Security Info=True")
-                    Using cmd = New OleDbCommand("select count(*) from Utenti where Username = @Username and Password = @Password;", conn)
-                        cmd.Parameters.Add("@Username", OleDbType.VarChar).Value = txtUsername.Text.Trim
-                        cmd.Parameters.Add("@Password", OleDbType.VarChar).Value = txtPassword.Text.Trim
-                        If conn.State = ConnectionState.Closed Then conn.Open()
-                        val = cmd.ExecuteScalar
-                        cmd.Dispose()
-                        If val = 1 Then
+        Dim username = txtUsername.Text.Trim
+        Dim password = txtPassword.Text.Trim
 
-                            If checkRicordami.Checked = True Then
-                                My.Settings.savedUsername = txtUsername.Text
-                                My.Settings.savedPassword = txtPassword.Text
-                                My.Settings.checkRicordamiSett = True
-                                My.Settings.Save()
-                            End If
-                            Home.Show()
-                            Me.Close()
-                        Else
-                            MsgBox("Credenziali errate")
+
+        If (username <> "" And username <> "Username") Then
+            If (password <> "" And password <> "Password") Then
+                Dim val As Integer
+                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist Security Info=True")
+                Dim query As String = "select count(*) from Utenti where Username = @Username and Password = @Password;"
+
+                Using cmd = New OleDbCommand(query, conn)
+                    cmd.Parameters.Add("@Username", OleDbType.VarChar).Value = txtUsername.Text.Trim
+                    cmd.Parameters.Add("@Password", OleDbType.VarChar).Value = txtPassword.Text.Trim
+
+                    If conn.State = ConnectionState.Closed Then conn.Open()
+
+                    val = cmd.ExecuteScalar
+                    cmd.Dispose()
+
+                    If val = 1 Then
+                        If checkRicordami.Checked = True Then
+                            My.Settings.savedUsername = txtUsername.Text
+                            My.Settings.savedPassword = txtPassword.Text
+                            My.Settings.checkRicordamiSett = True
+                            My.Settings.Save()
                         End If
-                    End Using
-                Else
-                    MsgBox("Inserisci la password")
-                End If
+                        Home.Show()
+                        Me.Close()
+                    Else
+                        lblMsgLogin.Visible = True
+                    End If
+                End Using
             Else
-                MsgBox("Inserisci un nome utente")
+                lblMsgPassword.Visible = True
             End If
         Else
-            MsgBox("Inserisci i dati utente!")
+            lblMsgUsername.Visible = True
         End If
     End Sub
+#End Region
 
+#Region "Register button"
+    Private Sub lblRegister_Click(sender As Object, e As EventArgs) Handles lblRegister.Click
+        Register.Show()
+        Me.Close()
+    End Sub
+#End Region
+
+#Region "Mostra/Nascondi Dati"
     Private Sub eyeSetting_Click(sender As Object, e As EventArgs) Handles eyeSetting.Click
         If pwdShow = False Then
             eyeSetting.Image = My.Resources.ResourceManager.GetObject("closed_eye")
@@ -129,12 +157,7 @@ Public Class Login
             txtPassword.UseSystemPasswordChar = True
             pwdShow = False
         End If
-
     End Sub
-
-    Private Sub lblRegister_Click(sender As Object, e As EventArgs) Handles lblRegister.Click
-        Register.Show()
-        Me.Close()
-    End Sub
+#End Region
 
 End Class
