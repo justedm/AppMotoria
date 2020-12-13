@@ -73,10 +73,16 @@ Public Class Login
             txtUsername.ForeColor = Color.FromArgb(224, 224, 224)
             txtUsername.Clear()
         End If
-        lblMsgUsername.Visible = False
+        If lblMsgLogin.Visible = True Then lblMsgLogin.Visible = False
     End Sub
     Private Sub txtUsername_TextChanged(sender As Object, e As EventArgs) Handles txtUsername.TextChanged
-        If lblMsgLogin.Visible = True Then lblMsgLogin.Visible = False
+        lblMsgUsername.Visible = False
+    End Sub
+    Private Sub txtUsername_Leave(sender As Object, e As EventArgs) Handles txtUsername.Leave
+        If txtUsername.Text = "" Then
+            txtUsername.Text = "Username"
+            txtUsername.ForeColor = Color.FromArgb(207, 207, 207)
+        End If
     End Sub
 
     Private Sub txtPassword_Enter(sender As Object, e As EventArgs) Handles txtPassword.Enter
@@ -85,13 +91,21 @@ Public Class Login
             txtPassword.Clear()
             txtPassword.UseSystemPasswordChar = True
         End If
-        lblMsgPassword.Visible = False
+        If lblMsgLogin.Visible = True Then lblMsgLogin.Visible = False
     End Sub
     Private Sub txtPassword_TextChanged(sender As Object, e As EventArgs) Handles txtPassword.TextChanged
         If txtPassword.Text <> "" Then
             eyeSetting.Visible = True
         End If
-        If lblMsgLogin.Visible = True Then lblMsgLogin.Visible = False
+        lblMsgPassword.Visible = False
+    End Sub
+    Private Sub txtPassword_Leave(sender As Object, e As EventArgs) Handles txtPassword.Leave
+        If txtPassword.Text = "" Then
+            txtPassword.Text = "Password"
+            txtPassword.ForeColor = Color.FromArgb(207, 207, 207)
+            txtPassword.UseSystemPasswordChar = False
+            eyeSetting.Visible = False
+        End If
     End Sub
 #End Region
 
@@ -106,18 +120,18 @@ Public Class Login
             If (password <> "" And password <> "Password") Then
                 Dim val As Integer
                 Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist Security Info=True")
-                Dim query As String = "select count(*) from Utenti where Username = @Username and Password = @Password;"
+                Dim query As String = "select count(*) from Utenti Where StrComp([Username], @Username, 0) = 0 AND StrComp([Password], @Password, 0) = 0"
 
                 Using cmd = New OleDbCommand(query, conn)
-                    cmd.Parameters.Add("@Username", OleDbType.VarChar).Value = txtUsername.Text.Trim
-                    cmd.Parameters.Add("@Password", OleDbType.VarChar).Value = txtPassword.Text.Trim
+                    cmd.Parameters.Add("@Username", OleDbType.VarChar).Value = username
+                    cmd.Parameters.Add("@Password", OleDbType.VarChar).Value = password
 
                     If conn.State = ConnectionState.Closed Then conn.Open()
 
                     val = cmd.ExecuteScalar
                     cmd.Dispose()
 
-                    If val = 1 Then
+                    If val <> 0 Then
                         If checkRicordami.Checked = True Then
                             My.Settings.savedUsername = txtUsername.Text
                             My.Settings.savedPassword = txtPassword.Text

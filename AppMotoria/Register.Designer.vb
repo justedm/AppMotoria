@@ -36,7 +36,11 @@ Partial Class Register
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.eyePassword = New System.Windows.Forms.PictureBox()
         Me.eyeConfirmPassword = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnLogin = New System.Windows.Forms.Label()
+        Me.lblMsgUsername = New System.Windows.Forms.Label()
+        Me.lblMsgPassword = New System.Windows.Forms.Label()
+        Me.lblMsgLogin = New System.Windows.Forms.Label()
+        Me.lblPMsgPasswordConfirm = New System.Windows.Forms.Label()
         CType(Me.btnClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.eyePassword, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +97,7 @@ Partial Class Register
         Me.pwdConfirmBox.BorderColor = System.Drawing.Color.FromArgb(CType(CType(106, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(155, Byte), Integer))
         Me.pwdConfirmBox.CornerRadius = 3
         Me.pwdConfirmBox.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.pwdConfirmBox.Location = New System.Drawing.Point(44, 216)
+        Me.pwdConfirmBox.Location = New System.Drawing.Point(44, 229)
         Me.pwdConfirmBox.Name = "pwdConfirmBox"
         Me.pwdConfirmBox.SelectionColor = System.Drawing.Color.Transparent
         Me.pwdConfirmBox.Size = New System.Drawing.Size(199, 32)
@@ -105,7 +109,7 @@ Partial Class Register
         Me.pwdBox.BorderColor = System.Drawing.Color.FromArgb(CType(CType(106, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(155, Byte), Integer))
         Me.pwdBox.CornerRadius = 3
         Me.pwdBox.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.pwdBox.Location = New System.Drawing.Point(44, 174)
+        Me.pwdBox.Location = New System.Drawing.Point(44, 181)
         Me.pwdBox.Name = "pwdBox"
         Me.pwdBox.SelectionColor = System.Drawing.Color.Transparent
         Me.pwdBox.Size = New System.Drawing.Size(199, 32)
@@ -117,7 +121,7 @@ Partial Class Register
         Me.lblRegister.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblRegister.Font = New System.Drawing.Font("Calibri", 15.0!)
         Me.lblRegister.ForeColor = System.Drawing.Color.White
-        Me.lblRegister.Location = New System.Drawing.Point(44, 274)
+        Me.lblRegister.Location = New System.Drawing.Point(44, 301)
         Me.lblRegister.Name = "lblRegister"
         Me.lblRegister.Padding = New System.Windows.Forms.Padding(56, 5, 56, 5)
         Me.lblRegister.Size = New System.Drawing.Size(200, 34)
@@ -143,7 +147,7 @@ Partial Class Register
         Me.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPassword.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer))
-        Me.txtPassword.Location = New System.Drawing.Point(47, 178)
+        Me.txtPassword.Location = New System.Drawing.Point(47, 185)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(194, 25)
         Me.txtPassword.TabIndex = 13
@@ -156,7 +160,7 @@ Partial Class Register
         Me.txtPasswordConfirm.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPasswordConfirm.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPasswordConfirm.ForeColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer))
-        Me.txtPasswordConfirm.Location = New System.Drawing.Point(47, 220)
+        Me.txtPasswordConfirm.Location = New System.Drawing.Point(47, 233)
         Me.txtPasswordConfirm.Name = "txtPasswordConfirm"
         Me.txtPasswordConfirm.Size = New System.Drawing.Size(194, 25)
         Me.txtPasswordConfirm.TabIndex = 14
@@ -174,7 +178,7 @@ Partial Class Register
         '
         Me.eyePassword.Cursor = System.Windows.Forms.Cursors.Hand
         Me.eyePassword.Image = Global.AppMotoria.My.Resources.Resources.eye
-        Me.eyePassword.Location = New System.Drawing.Point(216, 180)
+        Me.eyePassword.Location = New System.Drawing.Point(216, 187)
         Me.eyePassword.Name = "eyePassword"
         Me.eyePassword.Size = New System.Drawing.Size(25, 22)
         Me.eyePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -185,24 +189,64 @@ Partial Class Register
         '
         Me.eyeConfirmPassword.Cursor = System.Windows.Forms.Cursors.Hand
         Me.eyeConfirmPassword.Image = Global.AppMotoria.My.Resources.Resources.eye
-        Me.eyeConfirmPassword.Location = New System.Drawing.Point(216, 221)
+        Me.eyeConfirmPassword.Location = New System.Drawing.Point(216, 235)
         Me.eyeConfirmPassword.Name = "eyeConfirmPassword"
         Me.eyeConfirmPassword.Size = New System.Drawing.Size(25, 22)
         Me.eyeConfirmPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.eyeConfirmPassword.TabIndex = 18
         Me.eyeConfirmPassword.TabStop = False
         '
-        'Label1
+        'btnLogin
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(129, 312)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(32, 13)
-        Me.Label1.TabIndex = 20
-        Me.Label1.Text = "Login"
+        Me.btnLogin.AutoSize = True
+        Me.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnLogin.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogin.ForeColor = System.Drawing.Color.White
+        Me.btnLogin.Location = New System.Drawing.Point(129, 338)
+        Me.btnLogin.Name = "btnLogin"
+        Me.btnLogin.Size = New System.Drawing.Size(32, 13)
+        Me.btnLogin.TabIndex = 20
+        Me.btnLogin.Text = "Login"
+        '
+        'lblMsgUsername
+        '
+        Me.lblMsgUsername.AutoSize = True
+        Me.lblMsgUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblMsgUsername.Location = New System.Drawing.Point(127, 165)
+        Me.lblMsgUsername.Name = "lblMsgUsername"
+        Me.lblMsgUsername.Size = New System.Drawing.Size(114, 13)
+        Me.lblMsgUsername.TabIndex = 22
+        Me.lblMsgUsername.Text = "Inserisci il nome utente"
+        '
+        'lblMsgPassword
+        '
+        Me.lblMsgPassword.AutoSize = True
+        Me.lblMsgPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblMsgPassword.Location = New System.Drawing.Point(137, 214)
+        Me.lblMsgPassword.Name = "lblMsgPassword"
+        Me.lblMsgPassword.Size = New System.Drawing.Size(104, 13)
+        Me.lblMsgPassword.TabIndex = 21
+        Me.lblMsgPassword.Text = "Inserisci la password"
+        '
+        'lblMsgLogin
+        '
+        Me.lblMsgLogin.AutoSize = True
+        Me.lblMsgLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(110, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(161, Byte), Integer))
+        Me.lblMsgLogin.Location = New System.Drawing.Point(47, 285)
+        Me.lblMsgLogin.Name = "lblMsgLogin"
+        Me.lblMsgLogin.Size = New System.Drawing.Size(123, 13)
+        Me.lblMsgLogin.TabIndex = 23
+        Me.lblMsgLogin.Text = "Registrato correttamente"
+        '
+        'lblPMsgPasswordConfirm
+        '
+        Me.lblPMsgPasswordConfirm.AutoSize = True
+        Me.lblPMsgPasswordConfirm.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblPMsgPasswordConfirm.Location = New System.Drawing.Point(98, 262)
+        Me.lblPMsgPasswordConfirm.Name = "lblPMsgPasswordConfirm"
+        Me.lblPMsgPasswordConfirm.Size = New System.Drawing.Size(143, 13)
+        Me.lblPMsgPasswordConfirm.TabIndex = 24
+        Me.lblPMsgPasswordConfirm.Text = "Le password non coincidono"
         '
         'Register
         '
@@ -210,7 +254,11 @@ Partial Class Register
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(281, 376)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblPMsgPasswordConfirm)
+        Me.Controls.Add(Me.lblMsgLogin)
+        Me.Controls.Add(Me.lblMsgUsername)
+        Me.Controls.Add(Me.lblMsgPassword)
+        Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.eyeConfirmPassword)
         Me.Controls.Add(Me.eyePassword)
         Me.Controls.Add(Me.TextBox1)
@@ -248,5 +296,9 @@ Partial Class Register
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents eyePassword As PictureBox
     Friend WithEvents eyeConfirmPassword As PictureBox
-    Friend WithEvents Label1 As Label
+    Friend WithEvents btnLogin As Label
+    Friend WithEvents lblMsgUsername As Label
+    Friend WithEvents lblMsgPassword As Label
+    Friend WithEvents lblMsgLogin As Label
+    Friend WithEvents lblPMsgPasswordConfirm As Label
 End Class
