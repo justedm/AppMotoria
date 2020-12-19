@@ -181,6 +181,13 @@ Public Class Register
                                 txtPasswordConfirm.UseSystemPasswordChar = False
                                 txtPasswordConfirm.ForeColor = Color.FromArgb(207, 207, 207)
 
+                                If My.Settings.arrayUtenti Is Nothing Then
+                                    My.Settings.arrayUtenti = New System.Collections.Specialized.StringCollection
+                                End If
+                                My.Settings.arrayUtenti.Add(username)
+                                My.Settings.Save()
+
+
                             End Using
                         Else
                             lblPMsgPasswordConfirm.Visible = True

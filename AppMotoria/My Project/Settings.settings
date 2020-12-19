@@ -19,5 +19,14 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist Security Info=True</Value>
     </Setting>
+    <Setting Name="nuovoAccount" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="arrayUtenti" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="currentUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

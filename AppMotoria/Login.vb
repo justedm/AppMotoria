@@ -138,6 +138,10 @@ Public Class Login
                             My.Settings.checkRicordamiSett = True
                             My.Settings.Save()
                         End If
+
+                        My.Settings.currentUser = username
+                        My.Settings.Save()
+
                         Home.Show()
                         Me.Close()
                     Else

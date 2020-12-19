@@ -99,6 +99,40 @@ Namespace My
                 Return CType(Me("AccountConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nuovoAccount() As Boolean
+            Get
+                Return CType(Me("nuovoAccount"),Boolean)
+            End Get
+            Set
+                Me("nuovoAccount") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property arrayUtenti() As Global.System.Collections.Specialized.StringCollection
+            Get
+                Return CType(Me("arrayUtenti"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+            Set
+                Me("arrayUtenti") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property currentUser() As String
+            Get
+                Return CType(Me("currentUser"),String)
+            End Get
+            Set
+                Me("currentUser") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
