@@ -25,6 +25,7 @@ Public Class Home
 #Region "Caricamento form"
     Private Sub Home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+
         tabControl.ItemSize = New Size(0, 1)
         tabControl.SizeMode = TabSizeMode.Fixed
         tabControl.SendToBack()
@@ -48,6 +49,7 @@ Public Class Home
         lblMsgVita.Visible = False
         lblMsgFianchi.Visible = False
         lblMsgCoscia.Visible = False
+
         TextBox1.Select()
 
         lblSave.Location = New Point(lblSave.Location.X, lblSave.Location.Y + 20)
@@ -138,183 +140,81 @@ Public Class Home
 #End Region
 
 #Region "Text Check"
-    Private Sub txtEta_Enter(sender As Object, e As EventArgs) Handles txtEta.Enter
-        If lblMsgEta.Visible = True Then lblMsgEta.Visible = False
-    End Sub
-    Private Sub txtEta_Leave(sender As Object, e As EventArgs) Handles txtEta.Leave
-        If Integer.TryParse(txtEta.Text, vbNull) Then
-            Dim eta As Integer = txtEta.Text
 
-            If eta < 0 Or eta > 99 Then
+    Private Sub limitToNumbers_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEta.KeyPress, txtAltezza.KeyPress, txtPetto.KeyPress,
+            txtTricipite.KeyPress, txtTorace.KeyPress, txtAddome.KeyPress, txtVita.KeyPress, txtFianchi.KeyPress, txtCoscia.KeyPress
+
+        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+
+    End Sub
+
+    Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
+
+        If Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = "." AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+
+    End Sub
+
+
+    Private Sub labelCheck_Enter(sender As Object, e As EventArgs) Handles txtEta.Enter, txtAltezza.Enter, txtPeso.Enter, txtSesso.Enter, txtPetto.Enter,
+            txtTricipite.Enter, txtTorace.Enter, txtAddome.Enter, txtVita.Enter, txtFianchi.Enter, txtCoscia.Enter
+
+        Dim tb As TextBox = DirectCast(sender, TextBox)
+        Dim lbl As String = tb.Name.Replace("txt", "lblMsg")
+
+        With tabControl.TabPages(2).Controls(lbl)
+            If .Visible = True Then
+                .Visible = False
+            End If
+        End With
+    End Sub
+    Private Sub checkSessoAndEta_Leave(sender As Object, e As EventArgs) Handles txtEta.Leave, txtSesso.Leave
+
+        Dim tb As TextBox = DirectCast(sender, TextBox)
+
+        If tb.Name = "txtEta" Then
+            If Integer.TryParse(txtEta.Text, vbNull) Then
+                Dim eta As Integer = txtEta.Text
+
+                If eta <= 0 Or eta >= 99 Then
+                    txtEta.Clear()
+                    lblMsgEta.Text = "Età non valida"
+                    lblMsgEta.Visible = True
+                End If
+
+            ElseIf txtEta.Text = "" Then
+            Else
                 txtEta.Clear()
-                lblMsgEta.Text = "Età inserita non valida"
+                lblMsgEta.Text = "Dato non valido"
                 lblMsgEta.Visible = True
             End If
-
-        ElseIf txtEta.Text = "" Then
-        Else
-            txtEta.Clear()
-            lblMsgEta.Text = "Dato non valido"
-            lblMsgEta.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtAltezza_Enter(sender As Object, e As EventArgs) Handles txtAltezza.Enter
-        If lblMsgAltezza.Visible = True Then lblMsgAltezza.Visible = False
-    End Sub
-    Private Sub txtAltezza_Leave(sender As Object, e As EventArgs) Handles txtAltezza.Leave
-        If Integer.TryParse(txtAltezza.Text, vbNull) Then
-            '
-        ElseIf txtAltezza.Text = "" Then
-            '
-        Else
-            txtAltezza.Clear()
-            lblMsgAltezza.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtPeso_Enter(sender As Object, e As EventArgs) Handles txtPeso.Enter
-        If lblMsgPeso.Visible = True Then lblMsgPeso.Visible = False
-    End Sub
-    Private Sub txtPeso_Leave(sender As Object, e As EventArgs) Handles txtPeso.Leave
-        If Integer.TryParse(txtPeso.Text, vbNull) Then
-            '
-        ElseIf txtPeso.Text = "" Then
-            '
-        Else
-            txtPeso.Clear()
-            lblMsgPeso.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtSesso_Enter(sender As Object, e As EventArgs) Handles txtSesso.Enter
-        If lblMsgSesso.Visible = True Then lblMsgSesso.Visible = False
-    End Sub
-    Private Sub txtSesso_Leave(sender As Object, e As EventArgs) Handles txtSesso.Leave
-        If Integer.TryParse(txtSesso.Text, vbNull) Then
-            txtSesso.Clear()
-            lblMsgSesso.Visible = True
-        ElseIf txtSesso.Text = "" Then
-            '
-        Else
-            If txtSesso.Text.ToLower = "m" Or txtSesso.Text.ToLower = "maschio" Then
-                '
-            ElseIf txtSesso.Text.ToLower = "f" Or txtSesso.Text.ToLower = "femmina" Then
+        ElseIf tb.Name = "txtSesso" Then
+            If Integer.TryParse(txtSesso.Text, vbNull) Then
+                txtSesso.Clear()
+                lblMsgSesso.Text = "Dato non valido"
+                lblMsgSesso.Visible = True
+            ElseIf txtSesso.Text = "" Then
                 '
             Else
-                txtSesso.Clear()
-                lblMsgSesso.Visible = True
+                If txtSesso.Text.ToLower = "m" Or txtSesso.Text.ToLower = "maschio" Then
+                    '
+                ElseIf txtSesso.Text.ToLower = "f" Or txtSesso.Text.ToLower = "femmina" Then
+                    '
+                Else
+                    txtSesso.Clear()
+                    lblMsgSesso.Visible = True
+                End If
             End If
         End If
+
     End Sub
 
-    Private Sub txtPetto_Enter(sender As Object, e As EventArgs) Handles txtPetto.Enter
-        If lblMsgPetto.Visible = True Then lblMsgPetto.Visible = False
-    End Sub
-    Private Sub txtPetto_Leave(sender As Object, e As EventArgs) Handles txtPetto.Leave
-        If Integer.TryParse(txtPetto.Text, vbNull) Then
-            '
-        ElseIf txtPetto.Text = "" Then
-            '
-        Else
-            txtPetto.Clear()
-            lblMsgPetto.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtTricipite_Enter(sender As Object, e As EventArgs) Handles txtTricipite.Enter
-        If lblMsgTricipite.Visible = True Then lblMsgTricipite.Visible = False
-    End Sub
-    Private Sub txtTricipite_Leave(sender As Object, e As EventArgs) Handles txtTricipite.Leave
-        If Integer.TryParse(txtTricipite.Text, vbNull) Then
-            '
-        ElseIf txtTricipite.Text = "" Then
-            '
-        Else
-            txtTricipite.Clear()
-            lblMsgTricipite.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtTorace_Enter(sender As Object, e As EventArgs) Handles txtTorace.Enter
-        If lblMsgTorace.Visible = True Then lblMsgTorace.Visible = False
-    End Sub
-    Private Sub txtTorace_Leave(sender As Object, e As EventArgs) Handles txtTorace.Leave
-        If Integer.TryParse(txtTorace.Text, vbNull) Then
-            '
-        ElseIf txtTorace.Text = "" Then
-            '
-        Else
-            txtTorace.Clear()
-            lblMsgTorace.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtAddome_Enter(sender As Object, e As EventArgs) Handles txtAddome.Enter
-        If lblMsgAddome.Visible = True Then lblMsgAddome.Visible = False
-    End Sub
-    Private Sub txtAddome_Leave(sender As Object, e As EventArgs) Handles txtAddome.Leave
-        If Integer.TryParse(txtAddome.Text, vbNull) Then
-            '
-        ElseIf txtAddome.Text = "" Then
-            '
-        Else
-            txtAddome.Clear()
-            lblMsgAddome.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtVita_Enter(sender As Object, e As EventArgs) Handles txtVita.Enter
-        If lblMsgVita.Visible = True Then lblMsgVita.Visible = False
-    End Sub
-    Private Sub txtVita_Leave(sender As Object, e As EventArgs) Handles txtVita.Leave
-        If Integer.TryParse(txtVita.Text, vbNull) Then
-            '
-        ElseIf txtVita.Text = "" Then
-            '
-        Else
-            txtVita.Clear()
-            lblMsgVita.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtFianchi_Enter(sender As Object, e As EventArgs) Handles txtFianchi.Enter
-        If lblMsgFianchi.Visible = True Then lblMsgFianchi.Visible = False
-    End Sub
-    Private Sub txtFianchi_Leave(sender As Object, e As EventArgs) Handles txtFianchi.Leave
-        If Integer.TryParse(txtFianchi.Text, vbNull) Then
-            '
-        ElseIf txtFianchi.Text = "" Then
-            '
-        Else
-            txtFianchi.Clear()
-            lblMsgFianchi.Visible = True
-        End If
-    End Sub
-
-    Private Sub txtCoscia_Enter(sender As Object, e As EventArgs) Handles txtCoscia.Enter
-        If lblMsgCoscia.Visible = True Then lblMsgCoscia.Visible = False
-    End Sub
-    Private Sub txtCoscia_Leave(sender As Object, e As EventArgs) Handles txtCoscia.Leave
-        If Integer.TryParse(txtCoscia.Text, vbNull) Then
-            '
-        ElseIf txtCoscia.Text = "" Then
-            '
-        Else
-            txtCoscia.Clear()
-            lblMsgCoscia.Visible = True
-        End If
-    End Sub
 #End Region
 
 #Region "Save button"
-
-    'Controllare che tutte le textbox abbiano un valore --OK
-    '-> Se la textbox è vuota: Modifica label con "Inserire un dato" --OK
-    '		-> Se non è vuota controlla che il valore sia un integer (tranne per sesso) --OK
-    '		-> Se il valore non è un integer: Modifica label con "Dato non corretto" --OK
-    '			-> Se è integer assegna i valori a variabili --OK
-
     Private Sub lblSave_Click(sender As Object, e As EventArgs) Handles lblSave.Click
 
         'Cerca ogni label nel form con il nome che inizia con "lblMsg"
@@ -327,63 +227,31 @@ Public Class Home
             End If
         Next
 
-        Dim check As Integer = 0
-        'Cerca tutte le textbox vuote nel form
-        'Inserisce i nomi dei label delle textbox vuote in un array
+        'Cerca tutte le textbox nel form
         Dim emptyTextboxList As New ArrayList
+        Dim values As New ArrayList
+        'Cerca tutte le textbox nel form
         For Each tb As TextBox In tabControl.TabPages(2).Controls.OfType(Of TextBox)()
-            If tb.Text.Length = 0 Then
-                emptyTextboxList.Add(tb.Name.Trim.Replace("txt", "lblMsg"))
+            'Controlla che abbiano un dato al loro interno
+            If tb.TextLength = 0 Then
+                'Non hanno un dato e vengono aggiunge all'array per mostrare "Inserisci un dato"
+                emptyTextboxList.Add(tb.Name.Trim.Replace("txt", "lblmsg"))
             Else
-
-                If Integer.TryParse(tb.Text, vbNull) Then
-                    'Inserisce i valori corretti nelle variabili apposite
-                    'Esegue la query di access per inserire i dati nel database
-
-                    If tb.Name = "txtEta" Then
-                        Dim varEta As Integer = tb.Text
-                    ElseIf tb.Name = "txtAltezza" Then
-                        Dim varAltezza As Integer = tb.Text
-                    ElseIf tb.Name = "txtPeso" Then
-                        Dim varPeso As Integer = tb.Text
-                    ElseIf tb.Name = "txtPetto" Then
-                        Dim varPetto As Integer = tb.Text
-                    ElseIf tb.Name = "txtTricipite" Then
-                        Dim varTricipite As Integer = tb.Text
-                    ElseIf tb.Name = "txtTorace" Then
-                        Dim varTorace As Integer = tb.Text
-                    ElseIf tb.Name = "txtAddome" Then
-                        Dim varAddome As Integer = tb.Text
-                    ElseIf tb.Name = "txtVita" Then
-                        Dim varVita As Integer = tb.Text
-                    ElseIf tb.Name = "txtFianchi" Then
-                        Dim varFianchi As Integer = tb.Text
-                    ElseIf tb.Name = "txtCoscia" Then
-                        Dim varCoscia As Integer = tb.Text
-                    End If
-
-                    check = check + 1
-
-
-                    'INSERT INTO Informazioni (Età, Altezza, Peso, Sesso, Petto, Tricipite, Torace, Addome, Vita, Fianchi, Coscia) VALUES (varEta, varAltezza, varPeso, varSesso, varPetto, varTricipite, varTorace, varAddome, varVita, varFianchi, varCoscia)
-
-
-                Else
-
-                    If tb.Name <> "txtSesso" Then
+                'Hanno un dato
+                'Controlla se il nome è "txtSesso"
+                If tb.Name = "txtSesso" Then
+                    If Integer.TryParse(tb.Text, vbNull) Then
                         With tabControl.TabPages(2).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
                             .Text = "Dato non valido"
                             .Visible = True
                         End With
                     Else
-                        'Convalida il valore del sesso e lo inserisce nella variabile
-                        Dim varSesso As String
-                        If tb.Text.ToLower = "maschio" Or tb.Text.ToLower = "m" Then
-                            varSesso = "maschio"
-                            check = check + 1
-                        ElseIf tb.Text.ToLower = "femmina" Or tb.Text.ToLower = "f" Then
-                            varSesso = "femmina"
-                            check = check + 1
+                        'Controlla che il sesso sia "m" o "maschio"
+                        If tb.Text.ToLower = "m" Or tb.Text.ToLower = "maschio" Then
+                            values.Add("maschio")
+                            'Controlla che il sesso sia "f" o "femmina
+                        ElseIf tb.Text.ToLower = "f" Or tb.Text.ToLower = "femmina" Then
+                            values.Add("femmina")
                         Else
                             With tabControl.TabPages(2).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
                                 .Text = "Dato non valido"
@@ -391,9 +259,45 @@ Public Class Home
                             End With
                         End If
                     End If
+                    'Controlla se il nome è "txtEta"
+                ElseIf tb.Name = "txtEta" Then
+                    'Controlla che il valore sia un numero
+                    If Integer.TryParse(tb.Text, vbNull) Then
+                        'Controlla che l'eta inserita sia >= 1 o <= 99
+                        If tb.Text >= 1 And tb.Text <= 99 Then
+                            values.Add(tb.Text)
+                        Else
+                            With tabControl.TabPages(2).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
+                                .Text = "Età non valida"
+                                .Visible = True
+                            End With
+                        End If
+                    Else
+                        With tabControl.TabPages(2).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
+                            .Text = "Età non valida"
+                            .Visible = True
+                        End With
+                    End If
+                ElseIf tb.Name = "txtPeso" Then
+                    If Double.TryParse(tb.Text, vbNull) Then
+                        values.Add(tb.Text)
+                    End If
+                    'Se il nome non è ne "txtSesso" ne "txtEta"
+                Else
+                    'Controlla che il valore sia un numero
+                    If Integer.TryParse(tb.Text, vbNull) Then
+                        values.Add(tb.Text)
+                    Else
+                        With tabControl.TabPages(2).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
+                            .Text = "Dato non valido"
+                            .Visible = True
+                        End With
+                    End If
                 End If
+
             End If
         Next
+
         'Rende visibili i label delle textbox vuote con testo "Inserisci un dato"
         For Each emptyTextbox In emptyTextboxList
             With tabControl.TabPages(2).Controls(emptyTextbox)
@@ -402,11 +306,29 @@ Public Class Home
             End With
         Next
 
-        If check = 11 Then
-            MsgBox("Ok")
+        If values.Count = 11 Then
+            MsgBox("OK")
         Else
-            MsgBox("errore nella compilazione")
+            MsgBox("Inserisci tutti i dati")
         End If
+
+
+        '[1] - Coscia
+        '[2] - Fianchi
+        '[3] - Vita
+        '[4] - Addome
+        '[5] - Torace
+        '[6] - Tricipite
+        '[7] - Petto
+        '[8] - Sesso
+        '[9] - Peso
+        '[10] - Altezza
+        '[11] - Età
+
+
+
+
+
 
     End Sub
 #End Region
