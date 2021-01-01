@@ -1,0 +1,18 @@
+BMI: Peso / altezza^2
+< 18.5 			-> Sottopeso
+>= 18.5 e <= 24.9 	-> Normopeso
+>= 25 e <= 29.9 	-> Sovrappeso
+>= 30 e <= 34.9 	-> Obeso livello 1
+>= 35 			-> Obeso livello 2
+
+
+Plicometria
+Uomo: Addome, Petto, Coscia
+Densità corporea = 1.10938 – (0.0008267 x somma 3 pliche) + (0.0000016 x (somma 3 pliche2)) – (0.0002574 x età) 
+%FM = (495/Densità corporea) – 450 
+
+Donna: Soprailiaca (Fianchi), Tricipite, Coscia
+Densità corporea= 1.0994921 – (0.0009929 x somma 3 pliche) + (0.0000023 x (somma 3 pliche2)) – (0.0001392 x età) 
+%FM = (495/Densità corporea) – 450 
+
+
