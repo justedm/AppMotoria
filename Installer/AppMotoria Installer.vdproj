@@ -15,32 +15,38 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3EE02814B2984773ACDDF8173C8B6B1C"
+        "MsmKey" = "8:_288FC10734DB487586A4E41F952AE90A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
+        "MsmKey" = "8:_9241FDC7DEE4459FA280A06F817ABEEC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E072FAA9FCA22395FA070E2D93B6305D"
-        "OwnerKey" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
+        "OwnerKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_F7EBE79544EBB0C154120DE290FA0CBE"
-        "OwnerKey" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
+        "OwnerKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
+        "OwnerKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -150,10 +156,30 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EE02814B2984773ACDDF8173C8B6B1C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_288FC10734DB487586A4E41F952AE90A"
             {
             "SourcePath" = "8:..\\AppMotoria\\Img\\logo.ico"
             "TargetName" = "8:logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9241FDC7DEE4459FA280A06F817ABEEC"
+            {
+            "SourcePath" = "8:..\\AppMotoria\\bin\\Debug\\Account.mdb"
+            "TargetName" = "8:Account.mdb"
             "Tag" = "8:"
             "Folder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
             "Condition" = "8:"
@@ -300,11 +326,11 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:AppMotoria"
         "ProductCode" = "8:{A2477C0E-CC18-4464-A1BB-A8F05371588A}"
-        "PackageCode" = "8:{6F80BED6-8686-40D1-812E-1742B6985858}"
+        "PackageCode" = "8:{F730BCCA-28C5-4987-827E-B9F716516F08}"
         "UpgradeCode" = "8:{B16C1311-CDDA-4CD0-BFC4-EE24F3D21E45}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
@@ -420,7 +446,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5287C1A09E744E1B9B90858C45A13C11"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_47698EA9AE534210B406990601584A4A"
             {
             "Name" = "8:AppMotoria"
             "Arguments" = "8:"
@@ -428,13 +454,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
+            "Target" = "8:_DD5F9D9F11C04B87A71981844F65629B"
             "Folder" = "8:_F33502E521D441AAA0937D96AAB83369"
             "WorkingFolder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
-            "Icon" = "8:_3EE02814B2984773ACDDF8173C8B6B1C"
+            "Icon" = "8:_288FC10734DB487586A4E41F952AE90A"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BAFD1C0DBA95463485EC85F022D3DD47"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8DFBB3067D72417FBE803CC979F107DF"
             {
             "Name" = "8:AppMotoria"
             "Arguments" = "8:"
@@ -442,10 +468,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_79574A579E6A4566BC0B5DF13B50F9A6"
+            "Target" = "8:_DD5F9D9F11C04B87A71981844F65629B"
             "Folder" = "8:_E41057E0EB824F70AF46C227233DB256"
             "WorkingFolder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
-            "Icon" = "8:_3EE02814B2984773ACDDF8173C8B6B1C"
+            "Icon" = "8:_288FC10734DB487586A4E41F952AE90A"
             "Feature" = "8:"
             }
         }
@@ -847,7 +873,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_79574A579E6A4566BC0B5DF13B50F9A6"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DD5F9D9F11C04B87A71981844F65629B"
             {
             "SourcePath" = "8:..\\AppMotoria\\obj\\Debug\\AppMotoria.exe"
             "TargetName" = "8:"

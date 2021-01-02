@@ -150,7 +150,7 @@ Public Class Home
 
     Sub loadBMI()
         'Carica i dati
-        Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist Security Info=True")
+        Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb")
 
         Dim idSearch As String = "SELECT ID FROM Utenti WHERE Username = @Username"
         Dim idFound As String
@@ -389,7 +389,8 @@ Public Class Home
             Dim msg As DialogResult = MessageBox.Show("Sei sicuro?", "Salva dati", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If msg = DialogResult.Yes Then
-                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist Security Info=True")
+                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb")
+
 
                 Dim idSearch As String = "SELECT ID FROM Utenti WHERE Username = @Username"
                 Dim idFound As String

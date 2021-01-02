@@ -119,7 +119,7 @@ Public Class Login
         If (username <> "" And username <> "Username") Then
             If (password <> "" And password <> "Password") Then
                 Dim val As Integer
-                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist Security Info=True")
+                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb")
                 Dim query As String = "select count(*) from Utenti Where StrComp([Username], @Username, 0) = 0 AND StrComp([Password], @Password, 0) = 0"
 
                 Using cmd = New OleDbCommand(query, conn)
