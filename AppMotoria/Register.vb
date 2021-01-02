@@ -145,7 +145,7 @@ Public Class Register
 
         If (username <> "" And username <> "Username") Then
             If (password <> "" And password <> "Password") Then
-                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb")
+                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\AppDB.mdb")
                 Dim queryRead As String = "select * from Utenti where username = @Username"
 
                 Using cmdRead = New OleDbCommand(queryRead, conn)

@@ -21,44 +21,44 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9241FDC7DEE4459FA280A06F817ABEEC"
+        "MsmKey" = "8:_423BF3B6F34A4353BE59178B190DE072"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
+        "MsmKey" = "8:_951D1F5C11624FEA9299CA4E19359FE6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E072FAA9FCA22395FA070E2D93B6305D"
-        "OwnerKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
+        "OwnerKey" = "8:_951D1F5C11624FEA9299CA4E19359FE6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_F7EBE79544EBB0C154120DE290FA0CBE"
-        "OwnerKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DD5F9D9F11C04B87A71981844F65629B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E072FAA9FCA22395FA070E2D93B6305D"
+        "OwnerKey" = "8:_951D1F5C11624FEA9299CA4E19359FE6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F7EBE79544EBB0C154120DE290FA0CBE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_951D1F5C11624FEA9299CA4E19359FE6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E072FAA9FCA22395FA070E2D93B6305D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -176,10 +176,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9241FDC7DEE4459FA280A06F817ABEEC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_423BF3B6F34A4353BE59178B190DE072"
             {
-            "SourcePath" = "8:..\\AppMotoria\\bin\\Debug\\Account.mdb"
-            "TargetName" = "8:Account.mdb"
+            "SourcePath" = "8:..\\AppMotoria\\bin\\Debug\\AppDB.mdb"
+            "TargetName" = "8:AppDB.mdb"
             "Tag" = "8:"
             "Folder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
             "Condition" = "8:"
@@ -326,7 +326,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:AppMotoria"
         "ProductCode" = "8:{A2477C0E-CC18-4464-A1BB-A8F05371588A}"
-        "PackageCode" = "8:{F730BCCA-28C5-4987-827E-B9F716516F08}"
+        "PackageCode" = "8:{57B1992D-D218-4BDD-BAA4-5D962ECC0493}"
         "UpgradeCode" = "8:{B16C1311-CDDA-4CD0-BFC4-EE24F3D21E45}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -446,7 +446,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_47698EA9AE534210B406990601584A4A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7D2DE6370CAC46078715896FBE8EE114"
             {
             "Name" = "8:AppMotoria"
             "Arguments" = "8:"
@@ -454,13 +454,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_DD5F9D9F11C04B87A71981844F65629B"
+            "Target" = "8:_951D1F5C11624FEA9299CA4E19359FE6"
             "Folder" = "8:_F33502E521D441AAA0937D96AAB83369"
             "WorkingFolder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
             "Icon" = "8:_288FC10734DB487586A4E41F952AE90A"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8DFBB3067D72417FBE803CC979F107DF"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B73A1701A8684BBAA3158F7D45C550AB"
             {
             "Name" = "8:AppMotoria"
             "Arguments" = "8:"
@@ -468,7 +468,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_DD5F9D9F11C04B87A71981844F65629B"
+            "Target" = "8:_951D1F5C11624FEA9299CA4E19359FE6"
             "Folder" = "8:_E41057E0EB824F70AF46C227233DB256"
             "WorkingFolder" = "8:_1958FD5700F74091B4B4998A363C7F2F"
             "Icon" = "8:_288FC10734DB487586A4E41F952AE90A"
@@ -873,7 +873,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DD5F9D9F11C04B87A71981844F65629B"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_951D1F5C11624FEA9299CA4E19359FE6"
             {
             "SourcePath" = "8:..\\AppMotoria\\obj\\Debug\\AppMotoria.exe"
             "TargetName" = "8:"

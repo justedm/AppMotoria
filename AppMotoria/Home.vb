@@ -1,6 +1,7 @@
 ﻿Imports System.Data.OleDb
 Imports System.Runtime.InteropServices
 Public Class Home
+    Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\AppDB.mdb")
 
 #Region "Movimento form"
     Public Const WM_NCLBUTTONDOWN As Integer = 161
@@ -28,18 +29,13 @@ Public Class Home
         tabControl.SizeMode = TabSizeMode.Fixed
         tabControl.SendToBack()
 
-        lblMsgEta.Visible = False
-        lblMsgAltezza.Visible = False
-        lblMsgPeso.Visible = False
-        lblMsgSesso.Visible = False
-        lblMsgPetto.Visible = False
-        lblMsgTricipite.Visible = False
-        lblMsgTorace.Visible = False
-        lblMsgAddome.Visible = False
-        lblMsgVita.Visible = False
-        lblMsgFianchi.Visible = False
-        lblMsgCoscia.Visible = False
+        Dim lblList = {"lblMsgEta", "lblMsgAltezza", "lblMsgPeso", "lblMsgSesso", "lblMsgPetto", "lblMsgTricipite", "lblMsgTorace", "lblMsgAddome", "lblMsgVita", "lblMsgFianchi", "lblMsgCoscia"}
 
+        For Each lbl In lblList
+            With tabControl.TabPages(1).Controls(lbl)
+                .Visible = False
+            End With
+        Next
         lblBMI.Visible = False
 
         If My.Settings.arrayUtenti Is Nothing Then
@@ -53,6 +49,30 @@ Public Class Home
         End If
 
         lblSave.Location = New Point(lblSave.Location.X, lblSave.Location.Y + 20)
+
+        Dim sexQuery As String = "SELECT * FROM Utenti WHERE Username = @Username AND Sesso IS NOT NULL"
+
+        Using cmdRead = New OleDbCommand(sexQuery, conn)
+            cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
+            If conn.State = ConnectionState.Closed Then conn.Open()
+            Dim reader As OleDbDataReader = cmdRead.ExecuteReader
+            cmdRead.Dispose()
+
+            If reader.Read = True Then
+                Dim selectSex As String = "select Sesso FROM Utenti WHERE Username = @Username"
+
+                Using sexCmd = New OleDbCommand(selectSex, conn)
+                    sexCmd.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
+
+                    txtSesso.Text = sexCmd.ExecuteScalar
+                    txtSesso.ReadOnly = True
+
+                End Using
+
+            End If
+        End Using
+
+
 
         TextBox1.Select()
 
@@ -150,8 +170,6 @@ Public Class Home
 
     Sub loadBMI()
         'Carica i dati
-        Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb")
-
         Dim idSearch As String = "SELECT ID FROM Utenti WHERE Username = @Username"
         Dim idFound As String
 
@@ -338,29 +356,29 @@ Public Class Home
                 ElseIf tb.Name = "txtEta" Then
                     'Controlla che il valore sia un numero
                     If Integer.TryParse(tb.Text, vbNull) Then
-                            'Controlla che l'eta inserita sia >= 1 o <= 99
-                            If tb.Text >= 1 And tb.Text <= 99 Then
-                                values.Add(tb.Text)
-                            Else
-                                With tabControl.TabPages(1).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
-                                    .Text = "Età non valida"
-                                    .Visible = True
-                                End With
-                            End If
+                        'Controlla che l'eta inserita sia >= 1 o <= 99
+                        If tb.Text >= 1 And tb.Text <= 99 Then
+                            values.Add(tb.Text)
                         Else
                             With tabControl.TabPages(1).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
                                 .Text = "Età non valida"
                                 .Visible = True
                             End With
                         End If
-                    ElseIf tb.Name = "txtPeso" Then
-                        If Double.TryParse(tb.Text, vbNull) Then
-                            values.Add(tb.Text)
-                        End If
-                        'Se il nome non è ne "txtSesso" ne "txtEta"
                     Else
-                        'Controlla che il valore sia un numero
-                        If Integer.TryParse(tb.Text, vbNull) Then
+                        With tabControl.TabPages(1).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
+                            .Text = "Età non valida"
+                            .Visible = True
+                        End With
+                    End If
+                ElseIf tb.Name = "txtPeso" Then
+                    If Double.TryParse(tb.Text, vbNull) Then
+                        values.Add(tb.Text)
+                    End If
+                    'Se il nome non è ne "txtSesso" ne "txtEta"
+                Else
+                    'Controlla che il valore sia un numero
+                    If Integer.TryParse(tb.Text, vbNull) Then
                         values.Add(tb.Text)
                     Else
                         With tabControl.TabPages(1).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
@@ -384,14 +402,9 @@ Public Class Home
 
         'Se tutti i dati sono stati inseriti li inserisce nel database
         If values.Count = 11 Then
-            MsgBox(values(7))
-
             Dim msg As DialogResult = MessageBox.Show("Sei sicuro?", "Salva dati", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If msg = DialogResult.Yes Then
-                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb")
-
-
                 Dim idSearch As String = "SELECT ID FROM Utenti WHERE Username = @Username"
                 Dim idFound As String
 
@@ -442,11 +455,33 @@ Public Class Home
                 My.Settings.arrayUtenti.Remove(My.Settings.currentUser)
                 My.Settings.Save()
 
+                Dim txtBoxList As New ArrayList
+                For Each txtBox As TextBox In tabControl.TabPages(1).Controls.OfType(Of TextBox)()
+                    txtBoxList.Add(txtBox.Name.Trim)
+                Next
+
+                For Each txtBox In txtBoxList
+                    If txtBox <> "txtSesso" Then
+                        With tabControl.TabPages(1).Controls(txtBox)
+                            .Text = ""
+                        End With
+                    End If
+                Next
+
+                If txtSesso.Text.ToLower = "m" Or txtSesso.Text.ToLower = "maschio" Then
+                    txtSesso.Text = "Maschio"
+                    txtSesso.ReadOnly = True
+                ElseIf txtSesso.Text.ToLower = "f" Or txtSesso.Text.ToLower = "femmina" Then
+                    txtSesso.Text = "Femmina"
+                    txtSesso.ReadOnly = True
+                End If
+
                 MessageBox.Show("Dati salvati!", "Salvataggio dati", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
             End If
 
         Else
-            MsgBox("Inserisci tutti i dati")
+            MessageBox.Show("Inserisci tutti i dati!", "Salvataggio dati", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
 

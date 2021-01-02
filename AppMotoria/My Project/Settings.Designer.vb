@@ -89,17 +89,6 @@ Namespace My
             End Set
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Account.mdb;Persist "& _ 
-            "Security Info=True")>  _
-        Public ReadOnly Property AccountConnectionString() As String
-            Get
-                Return CType(Me("AccountConnectionString"),String)
-            End Get
-        End Property
-        
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Property nuovoAccount() As Boolean
@@ -132,6 +121,16 @@ Namespace My
             Set
                 Me("currentUser") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\AppDB.mdb")>  _
+        Public ReadOnly Property AppDBConnectionString() As String
+            Get
+                Return CType(Me("AppDBConnectionString"),String)
+            End Get
         End Property
     End Class
 End Namespace

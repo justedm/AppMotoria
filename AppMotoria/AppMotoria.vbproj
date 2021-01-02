@@ -109,10 +109,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDataSet.Designer.vb">
+    <Compile Include="AppDBDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AccountDataSet.xsd</DependentUpon>
+      <DependentUpon>AppDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Home.Designer.vb">
       <DependentUpon>Home.vb</DependentUpon>
@@ -168,16 +168,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AccountDataSet.xsc">
-      <DependentUpon>AccountDataSet.xsd</DependentUpon>
+    <None Include="AppDBDataSet.xsc">
+      <DependentUpon>AppDBDataSet.xsd</DependentUpon>
     </None>
-    <None Include="AccountDataSet.xsd">
+    <None Include="AppDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AccountDataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>AppDBDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="AccountDataSet.xss">
-      <DependentUpon>AccountDataSet.xsd</DependentUpon>
+    <None Include="AppDBDataSet.xss">
+      <DependentUpon>AppDBDataSet.xsd</DependentUpon>
     </None>
     <None Include="AppMotoria_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
@@ -192,7 +192,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account.mdb">
+    <Content Include="AppDB.mdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Img\closed-eye.png" />
@@ -220,17 +220,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <PublishFile Include="Account.mdb">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

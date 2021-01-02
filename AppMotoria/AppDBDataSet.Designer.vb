@@ -20,16 +20,16 @@ Option Explicit On
  Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
  Global.System.ComponentModel.ToolboxItem(true),  _
  Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema"),  _
- Global.System.Xml.Serialization.XmlRootAttribute("AccountDataSet"),  _
+ Global.System.Xml.Serialization.XmlRootAttribute("AppDBDataSet"),  _
  Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")>  _
-Partial Public Class AccountDataSet
+Partial Public Class AppDBDataSet
     Inherits Global.System.Data.DataSet
     
     Private tableInformazioni As InformazioniDataTable
     
     Private tableUtenti As UtentiDataTable
     
-    Private relationAccountInformazioni As Global.System.Data.DataRelation
+    Private relationUtentiInformazioni As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -145,7 +145,7 @@ Partial Public Class AccountDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Overrides Function Clone() As Global.System.Data.DataSet
-        Dim cln As AccountDataSet = CType(MyBase.Clone,AccountDataSet)
+        Dim cln As AppDBDataSet = CType(MyBase.Clone,AppDBDataSet)
         cln.InitVars
         cln.SchemaSerializationMode = Me.SchemaSerializationMode
         Return cln
@@ -220,23 +220,23 @@ Partial Public Class AccountDataSet
                 Me.tableUtenti.InitVars
             End If
         End If
-        Me.relationAccountInformazioni = Me.Relations("AccountInformazioni")
+        Me.relationUtentiInformazioni = Me.Relations("UtentiInformazioni")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Sub InitClass()
-        Me.DataSetName = "AccountDataSet"
+        Me.DataSetName = "AppDBDataSet"
         Me.Prefix = ""
-        Me.Namespace = "http://tempuri.org/AccountDataSet.xsd"
+        Me.Namespace = "http://tempuri.org/AppDBDataSet.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
         Me.tableInformazioni = New InformazioniDataTable()
         MyBase.Tables.Add(Me.tableInformazioni)
         Me.tableUtenti = New UtentiDataTable()
         MyBase.Tables.Add(Me.tableUtenti)
-        Me.relationAccountInformazioni = New Global.System.Data.DataRelation("AccountInformazioni", New Global.System.Data.DataColumn() {Me.tableUtenti.IDColumn}, New Global.System.Data.DataColumn() {Me.tableInformazioni.IDColumn}, false)
-        Me.Relations.Add(Me.relationAccountInformazioni)
+        Me.relationUtentiInformazioni = New Global.System.Data.DataRelation("UtentiInformazioni", New Global.System.Data.DataColumn() {Me.tableUtenti.IDColumn}, New Global.System.Data.DataColumn() {Me.tableInformazioni.ID_UserColumn}, false)
+        Me.Relations.Add(Me.relationUtentiInformazioni)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -262,7 +262,7 @@ Partial Public Class AccountDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Shared Function GetTypedDataSetSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-        Dim ds As AccountDataSet = New AccountDataSet()
+        Dim ds As AppDBDataSet = New AppDBDataSet()
         Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
         Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
         Dim any As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
@@ -325,29 +325,27 @@ Partial Public Class AccountDataSet
         
         Private columnID As Global.System.Data.DataColumn
         
-        Private columnTricipite As Global.System.Data.DataColumn
-        
-        Private columnSoprailia As Global.System.Data.DataColumn
-        
-        Private columnCacoscia As Global.System.Data.DataColumn
-        
-        Private columnPetto As Global.System.Data.DataColumn
-        
-        Private columnAddome As Global.System.Data.DataColumn
+        Private columnID_User As Global.System.Data.DataColumn
         
         Private columnCoscia As Global.System.Data.DataColumn
         
-        Private columnBraccio As Global.System.Data.DataColumn
-        
-        Private columnTorace As Global.System.Data.DataColumn
+        Private columnFianchi As Global.System.Data.DataColumn
         
         Private columnVita As Global.System.Data.DataColumn
         
-        Private columnFianchi As Global.System.Data.DataColumn
+        Private columnAddome As Global.System.Data.DataColumn
         
-        Private columnEtà As Global.System.Data.DataColumn
+        Private columnTorace As Global.System.Data.DataColumn
+        
+        Private columnTricipite As Global.System.Data.DataColumn
+        
+        Private columnPetto As Global.System.Data.DataColumn
         
         Private columnPeso As Global.System.Data.DataColumn
+        
+        Private columnAltezza As Global.System.Data.DataColumn
+        
+        Private columnEtà As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -394,41 +392,9 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property TricipiteColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ID_UserColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnTricipite
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property SoprailiaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSoprailia
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property CacosciaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCacoscia
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PettoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPetto
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property AddomeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnAddome
+                Return Me.columnID_User
             End Get
         End Property
         
@@ -442,17 +408,9 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property BraccioColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property FianchiColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnBraccio
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property ToraceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTorace
+                Return Me.columnFianchi
             End Get
         End Property
         
@@ -466,17 +424,33 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property FianchiColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property AddomeColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnFianchi
+                Return Me.columnAddome
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property EtàColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ToraceColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnEtà
+                Return Me.columnTorace
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property TricipiteColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTricipite
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PettoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPetto
             End Get
         End Property
         
@@ -485,6 +459,22 @@ Partial Public Class AccountDataSet
         Public ReadOnly Property PesoColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPeso
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property AltezzaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAltezza
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property EtàColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEtà
             End Get
         End Property
         
@@ -525,9 +515,12 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddInformazioniRow(ByVal Tricipite As Integer, ByVal Soprailia As Integer, ByVal Cacoscia As Integer, ByVal Petto As Integer, ByVal Addome As Integer, ByVal Coscia As Integer, ByVal Braccio As Integer, ByVal Torace As Integer, ByVal Vita As Integer, ByVal Fianchi As Integer, ByVal Età As Integer, ByVal Peso As Integer) As InformazioniRow
+        Public Overloads Function AddInformazioniRow(ByVal parentUtentiRowByUtentiInformazioni As UtentiRow, ByVal Coscia As String, ByVal Fianchi As String, ByVal Vita As String, ByVal Addome As String, ByVal Torace As String, ByVal Tricipite As String, ByVal Petto As String, ByVal Peso As String, ByVal Altezza As String, ByVal Età As String) As InformazioniRow
             Dim rowInformazioniRow As InformazioniRow = CType(Me.NewRow,InformazioniRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Tricipite, Soprailia, Cacoscia, Petto, Addome, Coscia, Braccio, Torace, Vita, Fianchi, Età, Peso}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Coscia, Fianchi, Vita, Addome, Torace, Tricipite, Petto, Peso, Altezza, Età}
+            If (Not (parentUtentiRowByUtentiInformazioni) Is Nothing) Then
+                columnValuesArray(1) = parentUtentiRowByUtentiInformazioni(0)
+            End If
             rowInformazioniRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowInformazioniRow)
             Return rowInformazioniRow
@@ -557,18 +550,17 @@ Partial Public Class AccountDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub InitVars()
             Me.columnID = MyBase.Columns("ID")
-            Me.columnTricipite = MyBase.Columns("Tricipite")
-            Me.columnSoprailia = MyBase.Columns("Soprailia")
-            Me.columnCacoscia = MyBase.Columns("Cacoscia")
-            Me.columnPetto = MyBase.Columns("Petto")
-            Me.columnAddome = MyBase.Columns("Addome")
+            Me.columnID_User = MyBase.Columns("ID_User")
             Me.columnCoscia = MyBase.Columns("Coscia")
-            Me.columnBraccio = MyBase.Columns("Braccio")
-            Me.columnTorace = MyBase.Columns("Torace")
-            Me.columnVita = MyBase.Columns("Vita")
             Me.columnFianchi = MyBase.Columns("Fianchi")
-            Me.columnEtà = MyBase.Columns("Età")
+            Me.columnVita = MyBase.Columns("Vita")
+            Me.columnAddome = MyBase.Columns("Addome")
+            Me.columnTorace = MyBase.Columns("Torace")
+            Me.columnTricipite = MyBase.Columns("Tricipite")
+            Me.columnPetto = MyBase.Columns("Petto")
             Me.columnPeso = MyBase.Columns("Peso")
+            Me.columnAltezza = MyBase.Columns("Altezza")
+            Me.columnEtà = MyBase.Columns("Età")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -576,36 +568,44 @@ Partial Public Class AccountDataSet
         Private Sub InitClass()
             Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnID)
-            Me.columnTricipite = New Global.System.Data.DataColumn("Tricipite", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTricipite)
-            Me.columnSoprailia = New Global.System.Data.DataColumn("Soprailia", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSoprailia)
-            Me.columnCacoscia = New Global.System.Data.DataColumn("Cacoscia", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCacoscia)
-            Me.columnPetto = New Global.System.Data.DataColumn("Petto", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPetto)
-            Me.columnAddome = New Global.System.Data.DataColumn("Addome", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAddome)
-            Me.columnCoscia = New Global.System.Data.DataColumn("Coscia", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnID_User = New Global.System.Data.DataColumn("ID_User", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID_User)
+            Me.columnCoscia = New Global.System.Data.DataColumn("Coscia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCoscia)
-            Me.columnBraccio = New Global.System.Data.DataColumn("Braccio", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBraccio)
-            Me.columnTorace = New Global.System.Data.DataColumn("Torace", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTorace)
-            Me.columnVita = New Global.System.Data.DataColumn("Vita", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnVita)
-            Me.columnFianchi = New Global.System.Data.DataColumn("Fianchi", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnFianchi = New Global.System.Data.DataColumn("Fianchi", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFianchi)
-            Me.columnEtà = New Global.System.Data.DataColumn("Età", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEtà)
-            Me.columnPeso = New Global.System.Data.DataColumn("Peso", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnVita = New Global.System.Data.DataColumn("Vita", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVita)
+            Me.columnAddome = New Global.System.Data.DataColumn("Addome", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAddome)
+            Me.columnTorace = New Global.System.Data.DataColumn("Torace", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTorace)
+            Me.columnTricipite = New Global.System.Data.DataColumn("Tricipite", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTricipite)
+            Me.columnPetto = New Global.System.Data.DataColumn("Petto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPetto)
+            Me.columnPeso = New Global.System.Data.DataColumn("Peso", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPeso)
+            Me.columnAltezza = New Global.System.Data.DataColumn("Altezza", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAltezza)
+            Me.columnEtà = New Global.System.Data.DataColumn("Età", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEtà)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
             Me.columnID.AutoIncrementStep = -1
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
+            Me.columnCoscia.MaxLength = 255
+            Me.columnFianchi.MaxLength = 255
+            Me.columnVita.MaxLength = 255
+            Me.columnAddome.MaxLength = 255
+            Me.columnTorace.MaxLength = 255
+            Me.columnTricipite.MaxLength = 255
+            Me.columnPetto.MaxLength = 255
+            Me.columnPeso.MaxLength = 255
+            Me.columnAltezza.MaxLength = 255
+            Me.columnEtà.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -673,7 +673,7 @@ Partial Public Class AccountDataSet
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As AccountDataSet = New AccountDataSet()
+            Dim ds As AppDBDataSet = New AppDBDataSet()
             Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
             any1.Namespace = "http://www.w3.org/2001/XMLSchema"
             any1.MinOccurs = New Decimal(0)
@@ -749,7 +749,7 @@ Partial Public Class AccountDataSet
         
         Private columnPassword As Global.System.Data.DataColumn
         
-        Private columnCodiceSegreto As Global.System.Data.DataColumn
+        Private columnSesso As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -812,9 +812,9 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property CodiceSegretoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property SessoColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnCodiceSegreto
+                Return Me.columnSesso
             End Get
         End Property
         
@@ -855,9 +855,9 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddUtentiRow(ByVal Username As String, ByVal Password As String, ByVal CodiceSegreto As String) As UtentiRow
+        Public Overloads Function AddUtentiRow(ByVal Username As String, ByVal Password As String, ByVal Sesso As String) As UtentiRow
             Dim rowUtentiRow As UtentiRow = CType(Me.NewRow,UtentiRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Username, Password, CodiceSegreto}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Username, Password, Sesso}
             rowUtentiRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowUtentiRow)
             Return rowUtentiRow
@@ -889,7 +889,7 @@ Partial Public Class AccountDataSet
             Me.columnID = MyBase.Columns("ID")
             Me.columnUsername = MyBase.Columns("Username")
             Me.columnPassword = MyBase.Columns("Password")
-            Me.columnCodiceSegreto = MyBase.Columns("CodiceSegreto")
+            Me.columnSesso = MyBase.Columns("Sesso")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -901,8 +901,8 @@ Partial Public Class AccountDataSet
             MyBase.Columns.Add(Me.columnUsername)
             Me.columnPassword = New Global.System.Data.DataColumn("Password", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPassword)
-            Me.columnCodiceSegreto = New Global.System.Data.DataColumn("CodiceSegreto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCodiceSegreto)
+            Me.columnSesso = New Global.System.Data.DataColumn("Sesso", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSesso)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -911,7 +911,7 @@ Partial Public Class AccountDataSet
             Me.columnID.Unique = true
             Me.columnUsername.MaxLength = 255
             Me.columnPassword.MaxLength = 255
-            Me.columnCodiceSegreto.MaxLength = 255
+            Me.columnSesso.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -979,7 +979,7 @@ Partial Public Class AccountDataSet
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As AccountDataSet = New AccountDataSet()
+            Dim ds As AppDBDataSet = New AppDBDataSet()
             Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
             any1.Namespace = "http://www.w3.org/2001/XMLSchema"
             any1.MinOccurs = New Decimal(0)
@@ -1069,85 +1069,25 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Tricipite() As Integer
+        Public Property ID_User() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableInformazioni.TricipiteColumn),Integer)
+                    Return CType(Me(Me.tableInformazioni.ID_UserColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Tricipite' nella tabella 'Informazioni' è DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'ID_User' nella tabella 'Informazioni' è DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableInformazioni.TricipiteColumn) = value
+                Me(Me.tableInformazioni.ID_UserColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Soprailia() As Integer
+        Public Property Coscia() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableInformazioni.SoprailiaColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Soprailia' nella tabella 'Informazioni' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableInformazioni.SoprailiaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Cacoscia() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableInformazioni.CacosciaColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Cacoscia' nella tabella 'Informazioni' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableInformazioni.CacosciaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Petto() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableInformazioni.PettoColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Petto' nella tabella 'Informazioni' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableInformazioni.PettoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Addome() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableInformazioni.AddomeColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Addome' nella tabella 'Informazioni' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableInformazioni.AddomeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Coscia() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableInformazioni.CosciaColumn),Integer)
+                    Return CType(Me(Me.tableInformazioni.CosciaColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Coscia' nella tabella 'Informazioni' è DBNull.", e)
                 End Try
@@ -1159,55 +1099,10 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Braccio() As Integer
+        Public Property Fianchi() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableInformazioni.BraccioColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Braccio' nella tabella 'Informazioni' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableInformazioni.BraccioColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Torace() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableInformazioni.ToraceColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Torace' nella tabella 'Informazioni' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableInformazioni.ToraceColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Vita() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableInformazioni.VitaColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Vita' nella tabella 'Informazioni' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableInformazioni.VitaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Fianchi() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableInformazioni.FianchiColumn),Integer)
+                    Return CType(Me(Me.tableInformazioni.FianchiColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Fianchi' nella tabella 'Informazioni' è DBNull.", e)
                 End Try
@@ -1219,25 +1114,85 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Età() As Integer
+        Public Property Vita() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableInformazioni.EtàColumn),Integer)
+                    Return CType(Me(Me.tableInformazioni.VitaColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Età' nella tabella 'Informazioni' è DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Vita' nella tabella 'Informazioni' è DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableInformazioni.EtàColumn) = value
+                Me(Me.tableInformazioni.VitaColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Peso() As Integer
+        Public Property Addome() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableInformazioni.PesoColumn),Integer)
+                    Return CType(Me(Me.tableInformazioni.AddomeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Addome' nella tabella 'Informazioni' è DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableInformazioni.AddomeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Torace() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableInformazioni.ToraceColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Torace' nella tabella 'Informazioni' è DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableInformazioni.ToraceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Tricipite() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableInformazioni.TricipiteColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Tricipite' nella tabella 'Informazioni' è DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableInformazioni.TricipiteColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Petto() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableInformazioni.PettoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Petto' nella tabella 'Informazioni' è DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableInformazioni.PettoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Peso() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableInformazioni.PesoColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Peso' nella tabella 'Informazioni' è DBNull.", e)
                 End Try
@@ -1249,73 +1204,55 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property UtentiRow() As UtentiRow
+        Public Property Altezza() As String
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("AccountInformazioni")),UtentiRow)
+                Try 
+                    Return CType(Me(Me.tableInformazioni.AltezzaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Altezza' nella tabella 'Informazioni' è DBNull.", e)
+                End Try
             End Get
             Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("AccountInformazioni"))
+                Me(Me.tableInformazioni.AltezzaColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsTricipiteNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.TricipiteColumn)
+        Public Property Età() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableInformazioni.EtàColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Età' nella tabella 'Informazioni' è DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableInformazioni.EtàColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property UtentiRow() As UtentiRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("UtentiInformazioni")),UtentiRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("UtentiInformazioni"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsID_UserNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.ID_UserColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetTricipiteNull()
-            Me(Me.tableInformazioni.TricipiteColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsSoprailiaNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.SoprailiaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetSoprailiaNull()
-            Me(Me.tableInformazioni.SoprailiaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsCacosciaNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.CacosciaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetCacosciaNull()
-            Me(Me.tableInformazioni.CacosciaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsPettoNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.PettoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetPettoNull()
-            Me(Me.tableInformazioni.PettoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsAddomeNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.AddomeColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetAddomeNull()
-            Me(Me.tableInformazioni.AddomeColumn) = Global.System.Convert.DBNull
+        Public Sub SetID_UserNull()
+            Me(Me.tableInformazioni.ID_UserColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1332,26 +1269,14 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsBraccioNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.BraccioColumn)
+        Public Function IsFianchiNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.FianchiColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetBraccioNull()
-            Me(Me.tableInformazioni.BraccioColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsToraceNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.ToraceColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetToraceNull()
-            Me(Me.tableInformazioni.ToraceColumn) = Global.System.Convert.DBNull
+        Public Sub SetFianchiNull()
+            Me(Me.tableInformazioni.FianchiColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1368,26 +1293,50 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsFianchiNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.FianchiColumn)
+        Public Function IsAddomeNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.AddomeColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetFianchiNull()
-            Me(Me.tableInformazioni.FianchiColumn) = Global.System.Convert.DBNull
+        Public Sub SetAddomeNull()
+            Me(Me.tableInformazioni.AddomeColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsEtàNull() As Boolean
-            Return Me.IsNull(Me.tableInformazioni.EtàColumn)
+        Public Function IsToraceNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.ToraceColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetEtàNull()
-            Me(Me.tableInformazioni.EtàColumn) = Global.System.Convert.DBNull
+        Public Sub SetToraceNull()
+            Me(Me.tableInformazioni.ToraceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsTricipiteNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.TricipiteColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetTricipiteNull()
+            Me(Me.tableInformazioni.TricipiteColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPettoNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.PettoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPettoNull()
+            Me(Me.tableInformazioni.PettoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1400,6 +1349,30 @@ Partial Public Class AccountDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetPesoNull()
             Me(Me.tableInformazioni.PesoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsAltezzaNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.AltezzaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetAltezzaNull()
+            Me(Me.tableInformazioni.AltezzaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsEtàNull() As Boolean
+            Return Me.IsNull(Me.tableInformazioni.EtàColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetEtàNull()
+            Me(Me.tableInformazioni.EtàColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -1461,16 +1434,16 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property CodiceSegreto() As String
+        Public Property Sesso() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableUtenti.CodiceSegretoColumn),String)
+                    Return CType(Me(Me.tableUtenti.SessoColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'CodiceSegreto' nella tabella 'Utenti' è DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'Sesso' nella tabella 'Utenti' è DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableUtenti.CodiceSegretoColumn) = value
+                Me(Me.tableUtenti.SessoColumn) = value
             End Set
         End Property
         
@@ -1500,23 +1473,23 @@ Partial Public Class AccountDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsCodiceSegretoNull() As Boolean
-            Return Me.IsNull(Me.tableUtenti.CodiceSegretoColumn)
+        Public Function IsSessoNull() As Boolean
+            Return Me.IsNull(Me.tableUtenti.SessoColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetCodiceSegretoNull()
-            Me(Me.tableUtenti.CodiceSegretoColumn) = Global.System.Convert.DBNull
+        Public Sub SetSessoNull()
+            Me(Me.tableUtenti.SessoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function GetInformazioniRows() As InformazioniRow()
-            If (Me.Table.ChildRelations("AccountInformazioni") Is Nothing) Then
+            If (Me.Table.ChildRelations("UtentiInformazioni") Is Nothing) Then
                 Return New InformazioniRow(-1) {}
             Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("AccountInformazioni")),InformazioniRow())
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("UtentiInformazioni")),InformazioniRow())
             End If
         End Function
     End Class
@@ -1594,7 +1567,7 @@ Partial Public Class AccountDataSet
     End Class
 End Class
 
-Namespace AccountDataSetTableAdapters
+Namespace AppDBDataSetTableAdapters
     
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
@@ -1724,132 +1697,123 @@ Namespace AccountDataSetTableAdapters
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "Informazioni"
             tableMapping.ColumnMappings.Add("ID", "ID")
-            tableMapping.ColumnMappings.Add("Tricipite", "Tricipite")
-            tableMapping.ColumnMappings.Add("Soprailia", "Soprailia")
-            tableMapping.ColumnMappings.Add("Cacoscia", "Cacoscia")
-            tableMapping.ColumnMappings.Add("Petto", "Petto")
-            tableMapping.ColumnMappings.Add("Addome", "Addome")
+            tableMapping.ColumnMappings.Add("ID_User", "ID_User")
             tableMapping.ColumnMappings.Add("Coscia", "Coscia")
-            tableMapping.ColumnMappings.Add("Braccio", "Braccio")
-            tableMapping.ColumnMappings.Add("Torace", "Torace")
-            tableMapping.ColumnMappings.Add("Vita", "Vita")
             tableMapping.ColumnMappings.Add("Fianchi", "Fianchi")
-            tableMapping.ColumnMappings.Add("Età", "Età")
+            tableMapping.ColumnMappings.Add("Vita", "Vita")
+            tableMapping.ColumnMappings.Add("Addome", "Addome")
+            tableMapping.ColumnMappings.Add("Torace", "Torace")
+            tableMapping.ColumnMappings.Add("Tricipite", "Tricipite")
+            tableMapping.ColumnMappings.Add("Petto", "Petto")
             tableMapping.ColumnMappings.Add("Peso", "Peso")
+            tableMapping.ColumnMappings.Add("Altezza", "Altezza")
+            tableMapping.ColumnMappings.Add("Età", "Età")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `Informazioni` WHERE ((`ID` = ?) AND ((? = 1 AND `Tricipite` IS NULL)"& _ 
-                " OR (`Tricipite` = ?)) AND ((? = 1 AND `Soprailia` IS NULL) OR (`Soprailia` = ?)"& _ 
-                ") AND ((? = 1 AND `Cacoscia` IS NULL) OR (`Cacoscia` = ?)) AND ((? = 1 AND `Pett"& _ 
-                "o` IS NULL) OR (`Petto` = ?)) AND ((? = 1 AND `Addome` IS NULL) OR (`Addome` = ?"& _ 
-                ")) AND ((? = 1 AND `Coscia` IS NULL) OR (`Coscia` = ?)) AND ((? = 1 AND `Braccio"& _ 
-                "` IS NULL) OR (`Braccio` = ?)) AND ((? = 1 AND `Torace` IS NULL) OR (`Torace` = "& _ 
-                "?)) AND ((? = 1 AND `Vita` IS NULL) OR (`Vita` = ?)) AND ((? = 1 AND `Fianchi` I"& _ 
-                "S NULL) OR (`Fianchi` = ?)) AND ((? = 1 AND `Età` IS NULL) OR (`Età` = ?)) AND ("& _ 
-                "(? = 1 AND `Peso` IS NULL) OR (`Peso` = ?)))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `Informazioni` WHERE ((`ID` = ?) AND ((? = 1 AND `ID_User` IS NULL) O"& _ 
+                "R (`ID_User` = ?)) AND ((? = 1 AND `Coscia` IS NULL) OR (`Coscia` = ?)) AND ((? "& _ 
+                "= 1 AND `Fianchi` IS NULL) OR (`Fianchi` = ?)) AND ((? = 1 AND `Vita` IS NULL) O"& _ 
+                "R (`Vita` = ?)) AND ((? = 1 AND `Addome` IS NULL) OR (`Addome` = ?)) AND ((? = 1"& _ 
+                " AND `Torace` IS NULL) OR (`Torace` = ?)) AND ((? = 1 AND `Tricipite` IS NULL) O"& _ 
+                "R (`Tricipite` = ?)) AND ((? = 1 AND `Petto` IS NULL) OR (`Petto` = ?)) AND ((? "& _ 
+                "= 1 AND `Peso` IS NULL) OR (`Peso` = ?)) AND ((? = 1 AND `Altezza` IS NULL) OR ("& _ 
+                "`Altezza` = ?)) AND ((? = 1 AND `Età` IS NULL) OR (`Età` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Soprailia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Soprailia", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Soprailia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Soprailia", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Cacoscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cacoscia", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Cacoscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cacoscia", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ID_User", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID_User", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID_User", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID_User", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Coscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Coscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Braccio", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Braccio", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Braccio", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Braccio", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Coscia", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Fianchi", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Fianchi", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Fianchi", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Vita", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Addome", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Torace", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Tricipite", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Petto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Peso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Peso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Peso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Altezza", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Altezza", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Altezza", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Altezza", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Età", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `Informazioni` (`Tricipite`, `Soprailia`, `Cacoscia`, `Petto`, `Addom"& _ 
-                "e`, `Coscia`, `Braccio`, `Torace`, `Vita`, `Fianchi`, `Età`, `Peso`) VALUES (?, "& _ 
-                "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `Informazioni` (`ID_User`, `Coscia`, `Fianchi`, `Vita`, `Addome`, `To"& _ 
+                "race`, `Tricipite`, `Petto`, `Peso`, `Altezza`, `Età`) VALUES (?, ?, ?, ?, ?, ?,"& _ 
+                " ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Soprailia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Soprailia", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Cacoscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cacoscia", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Coscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Braccio", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Braccio", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Fianchi", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Peso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ID_User", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID_User", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Coscia", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Fianchi", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Vita", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Addome", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Torace", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Tricipite", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Petto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Peso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Altezza", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Altezza", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Età", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `Informazioni` SET `Tricipite` = ?, `Soprailia` = ?, `Cacoscia` = ?, `Pett"& _ 
-                "o` = ?, `Addome` = ?, `Coscia` = ?, `Braccio` = ?, `Torace` = ?, `Vita` = ?, `Fi"& _ 
-                "anchi` = ?, `Età` = ?, `Peso` = ? WHERE ((`ID` = ?) AND ((? = 1 AND `Tricipite` "& _ 
-                "IS NULL) OR (`Tricipite` = ?)) AND ((? = 1 AND `Soprailia` IS NULL) OR (`Soprail"& _ 
-                "ia` = ?)) AND ((? = 1 AND `Cacoscia` IS NULL) OR (`Cacoscia` = ?)) AND ((? = 1 A"& _ 
-                "ND `Petto` IS NULL) OR (`Petto` = ?)) AND ((? = 1 AND `Addome` IS NULL) OR (`Add"& _ 
-                "ome` = ?)) AND ((? = 1 AND `Coscia` IS NULL) OR (`Coscia` = ?)) AND ((? = 1 AND "& _ 
-                "`Braccio` IS NULL) OR (`Braccio` = ?)) AND ((? = 1 AND `Torace` IS NULL) OR (`To"& _ 
-                "race` = ?)) AND ((? = 1 AND `Vita` IS NULL) OR (`Vita` = ?)) AND ((? = 1 AND `Fi"& _ 
-                "anchi` IS NULL) OR (`Fianchi` = ?)) AND ((? = 1 AND `Età` IS NULL) OR (`Età` = ?"& _ 
-                ")) AND ((? = 1 AND `Peso` IS NULL) OR (`Peso` = ?)))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `Informazioni` SET `ID_User` = ?, `Coscia` = ?, `Fianchi` = ?, `Vita` = ?,"& _ 
+                " `Addome` = ?, `Torace` = ?, `Tricipite` = ?, `Petto` = ?, `Peso` = ?, `Altezza`"& _ 
+                " = ?, `Età` = ? WHERE ((`ID` = ?) AND ((? = 1 AND `ID_User` IS NULL) OR (`ID_Use"& _ 
+                "r` = ?)) AND ((? = 1 AND `Coscia` IS NULL) OR (`Coscia` = ?)) AND ((? = 1 AND `F"& _ 
+                "ianchi` IS NULL) OR (`Fianchi` = ?)) AND ((? = 1 AND `Vita` IS NULL) OR (`Vita` "& _ 
+                "= ?)) AND ((? = 1 AND `Addome` IS NULL) OR (`Addome` = ?)) AND ((? = 1 AND `Tora"& _ 
+                "ce` IS NULL) OR (`Torace` = ?)) AND ((? = 1 AND `Tricipite` IS NULL) OR (`Tricip"& _ 
+                "ite` = ?)) AND ((? = 1 AND `Petto` IS NULL) OR (`Petto` = ?)) AND ((? = 1 AND `P"& _ 
+                "eso` IS NULL) OR (`Peso` = ?)) AND ((? = 1 AND `Altezza` IS NULL) OR (`Altezza` "& _ 
+                "= ?)) AND ((? = 1 AND `Età` IS NULL) OR (`Età` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Soprailia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Soprailia", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Cacoscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cacoscia", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Coscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Braccio", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Braccio", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Fianchi", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Peso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ID_User", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID_User", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Coscia", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Fianchi", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Vita", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Addome", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Torace", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Tricipite", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Petto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Peso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Altezza", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Altezza", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Età", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Soprailia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Soprailia", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Soprailia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Soprailia", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Cacoscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cacoscia", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Cacoscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cacoscia", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ID_User", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID_User", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID_User", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID_User", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Coscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Coscia", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Braccio", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Braccio", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Braccio", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Braccio", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Coscia", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coscia", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Fianchi", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Fianchi", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Fianchi", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Fianchi", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Vita", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Vita", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vita", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Addome", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Addome", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Addome", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Torace", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Torace", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Torace", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Tricipite", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Tricipite", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tricipite", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Petto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Petto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Petto", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Peso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Peso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Peso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Peso", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Altezza", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Altezza", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Altezza", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Altezza", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Età", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Età", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Età", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.OleDb.OleDbConnection()
-            Me._connection.ConnectionString = Global.AppMotoria.My.MySettings.Default.AccountConnectionString
+            Me._connection.ConnectionString = Global.AppMotoria.My.MySettings.Default.AppDBConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1858,8 +1822,8 @@ Namespace AccountDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, Tricipite, Soprailia, Cacoscia, Petto, Addome, Coscia, Braccio, Torace"& _ 
-                ", Vita, Fianchi, Età, Peso FROM Informazioni"
+            Me._commandCollection(0).CommandText = "SELECT ID, ID_User, Coscia, Fianchi, Vita, Addome, Torace, Tricipite, Petto, Peso"& _ 
+                ", Altezza, Età FROM Informazioni"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -1867,7 +1831,7 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As AccountDataSet.InformazioniDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As AppDBDataSet.InformazioniDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -1880,9 +1844,9 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As AccountDataSet.InformazioniDataTable
+        Public Overloads Overridable Function GetData() As AppDBDataSet.InformazioniDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As AccountDataSet.InformazioniDataTable = New AccountDataSet.InformazioniDataTable()
+            Dim dataTable As AppDBDataSet.InformazioniDataTable = New AppDBDataSet.InformazioniDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -1890,14 +1854,14 @@ Namespace AccountDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As AccountDataSet.InformazioniDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As AppDBDataSet.InformazioniDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As AccountDataSet) As Integer
+        Public Overloads Overridable Function Update(ByVal dataSet As AppDBDataSet) As Integer
             Return Me.Adapter.Update(dataSet, "Informazioni")
         End Function
         
@@ -1919,91 +1883,84 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_Tricipite As Global.System.Nullable(Of Integer), ByVal Original_Soprailia As Global.System.Nullable(Of Integer), ByVal Original_Cacoscia As Global.System.Nullable(Of Integer), ByVal Original_Petto As Global.System.Nullable(Of Integer), ByVal Original_Addome As Global.System.Nullable(Of Integer), ByVal Original_Coscia As Global.System.Nullable(Of Integer), ByVal Original_Braccio As Global.System.Nullable(Of Integer), ByVal Original_Torace As Global.System.Nullable(Of Integer), ByVal Original_Vita As Global.System.Nullable(Of Integer), ByVal Original_Fianchi As Global.System.Nullable(Of Integer), ByVal Original_Età As Global.System.Nullable(Of Integer), ByVal Original_Peso As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_ID_User As Global.System.Nullable(Of Integer), ByVal Original_Coscia As String, ByVal Original_Fianchi As String, ByVal Original_Vita As String, ByVal Original_Addome As String, ByVal Original_Torace As String, ByVal Original_Tricipite As String, ByVal Original_Petto As String, ByVal Original_Peso As String, ByVal Original_Altezza As String, ByVal Original_Età As String) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
-            If (Original_Tricipite.HasValue = true) Then
+            If (Original_ID_User.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Tricipite.Value,Integer)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_ID_User.Value,Integer)
             Else
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (Original_Soprailia.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Soprailia.Value,Integer)
-            Else
+            If (Original_Coscia Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Cacoscia.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Cacoscia.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Coscia,String)
+            End If
+            If (Original_Fianchi Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Petto.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_Petto.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Fianchi,String)
+            End If
+            If (Original_Vita Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Addome.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Addome.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_Vita,String)
+            End If
+            If (Original_Addome Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Coscia.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Coscia.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Addome,String)
+            End If
+            If (Original_Torace Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Braccio.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_Braccio.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Torace,String)
+            End If
+            If (Original_Tricipite Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Torace.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Torace.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_Tricipite,String)
+            End If
+            If (Original_Petto Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Vita.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_Vita.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Petto,String)
+            End If
+            If (Original_Peso Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Fianchi.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_Fianchi.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_Peso,String)
+            End If
+            If (Original_Altezza Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Età.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Età.Value,Integer)
             Else
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_Altezza,String)
+            End If
+            If (Original_Età Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Peso.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_Peso.Value,Integer)
             Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Età,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -2024,66 +1981,61 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Tricipite As Global.System.Nullable(Of Integer), ByVal Soprailia As Global.System.Nullable(Of Integer), ByVal Cacoscia As Global.System.Nullable(Of Integer), ByVal Petto As Global.System.Nullable(Of Integer), ByVal Addome As Global.System.Nullable(Of Integer), ByVal Coscia As Global.System.Nullable(Of Integer), ByVal Braccio As Global.System.Nullable(Of Integer), ByVal Torace As Global.System.Nullable(Of Integer), ByVal Vita As Global.System.Nullable(Of Integer), ByVal Fianchi As Global.System.Nullable(Of Integer), ByVal Età As Global.System.Nullable(Of Integer), ByVal Peso As Global.System.Nullable(Of Integer)) As Integer
-            If (Tricipite.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(Tricipite.Value,Integer)
+        Public Overloads Overridable Function Insert(ByVal ID_User As Global.System.Nullable(Of Integer), ByVal Coscia As String, ByVal Fianchi As String, ByVal Vita As String, ByVal Addome As String, ByVal Torace As String, ByVal Tricipite As String, ByVal Petto As String, ByVal Peso As String, ByVal Altezza As String, ByVal Età As String) As Integer
+            If (ID_User.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(ID_User.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            If (Soprailia.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Soprailia.Value,Integer)
-            Else
+            If (Coscia Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (Cacoscia.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Cacoscia.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Coscia,String)
+            End If
+            If (Fianchi Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (Petto.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Petto.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Fianchi,String)
+            End If
+            If (Vita Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
-            End If
-            If (Addome.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Addome.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Vita,String)
+            End If
+            If (Addome Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (Coscia.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(Coscia.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Addome,String)
+            End If
+            If (Torace Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (Braccio.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Braccio.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(Torace,String)
+            End If
+            If (Tricipite Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Torace.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Torace.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Tricipite,String)
+            End If
+            If (Petto Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Vita.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Vita.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Petto,String)
+            End If
+            If (Peso Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            If (Fianchi.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Fianchi.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Peso,String)
+            End If
+            If (Altezza Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            If (Età.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(Età.Value,Integer)
             Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Altezza,String)
+            End If
+            If (Età Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (Peso.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Peso.Value,Integer)
             Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(Età,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -2105,175 +2057,161 @@ Namespace AccountDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update( _
-                    ByVal Tricipite As Global.System.Nullable(Of Integer),  _
-                    ByVal Soprailia As Global.System.Nullable(Of Integer),  _
-                    ByVal Cacoscia As Global.System.Nullable(Of Integer),  _
-                    ByVal Petto As Global.System.Nullable(Of Integer),  _
-                    ByVal Addome As Global.System.Nullable(Of Integer),  _
-                    ByVal Coscia As Global.System.Nullable(Of Integer),  _
-                    ByVal Braccio As Global.System.Nullable(Of Integer),  _
-                    ByVal Torace As Global.System.Nullable(Of Integer),  _
-                    ByVal Vita As Global.System.Nullable(Of Integer),  _
-                    ByVal Fianchi As Global.System.Nullable(Of Integer),  _
-                    ByVal Età As Global.System.Nullable(Of Integer),  _
-                    ByVal Peso As Global.System.Nullable(Of Integer),  _
+                    ByVal ID_User As Global.System.Nullable(Of Integer),  _
+                    ByVal Coscia As String,  _
+                    ByVal Fianchi As String,  _
+                    ByVal Vita As String,  _
+                    ByVal Addome As String,  _
+                    ByVal Torace As String,  _
+                    ByVal Tricipite As String,  _
+                    ByVal Petto As String,  _
+                    ByVal Peso As String,  _
+                    ByVal Altezza As String,  _
+                    ByVal Età As String,  _
                     ByVal Original_ID As Integer,  _
-                    ByVal Original_Tricipite As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Soprailia As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Cacoscia As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Petto As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Addome As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Coscia As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Braccio As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Torace As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Vita As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Fianchi As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Età As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Peso As Global.System.Nullable(Of Integer)) As Integer
-            If (Tricipite.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Tricipite.Value,Integer)
+                    ByVal Original_ID_User As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_Coscia As String,  _
+                    ByVal Original_Fianchi As String,  _
+                    ByVal Original_Vita As String,  _
+                    ByVal Original_Addome As String,  _
+                    ByVal Original_Torace As String,  _
+                    ByVal Original_Tricipite As String,  _
+                    ByVal Original_Petto As String,  _
+                    ByVal Original_Peso As String,  _
+                    ByVal Original_Altezza As String,  _
+                    ByVal Original_Età As String) As Integer
+            If (ID_User.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(ID_User.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            If (Soprailia.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Soprailia.Value,Integer)
-            Else
+            If (Coscia Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (Cacoscia.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Cacoscia.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Coscia,String)
+            End If
+            If (Fianchi Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (Petto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Petto.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Fianchi,String)
+            End If
+            If (Vita Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
-            End If
-            If (Addome.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Addome.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Vita,String)
+            End If
+            If (Addome Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (Coscia.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Coscia.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Addome,String)
+            End If
+            If (Torace Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (Braccio.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Braccio.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Torace,String)
+            End If
+            If (Tricipite Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Torace.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Torace.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Tricipite,String)
+            End If
+            If (Petto Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Vita.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Vita.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Petto,String)
+            End If
+            If (Peso Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            If (Fianchi.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Fianchi.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Peso,String)
+            End If
+            If (Altezza Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            If (Età.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Età.Value,Integer)
             Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Altezza,String)
+            End If
+            If (Età Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (Peso.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Peso.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Età,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_ID,Integer)
-            If (Original_Tricipite.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Tricipite.Value,Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_ID,Integer)
+            If (Original_ID_User.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_ID_User.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
-            If (Original_Soprailia.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Soprailia.Value,Integer)
+            If (Original_Coscia Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Coscia,String)
             End If
-            If (Original_Cacoscia.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Cacoscia.Value,Integer)
+            If (Original_Fianchi Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Fianchi,String)
             End If
-            If (Original_Petto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Petto.Value,Integer)
+            If (Original_Vita Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Vita,String)
             End If
-            If (Original_Addome.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Addome.Value,Integer)
+            If (Original_Addome Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Addome,String)
             End If
-            If (Original_Coscia.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Coscia.Value,Integer)
+            If (Original_Torace Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_Torace,String)
             End If
-            If (Original_Braccio.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Braccio.Value,Integer)
+            If (Original_Tricipite Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Tricipite,String)
             End If
-            If (Original_Torace.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_Torace.Value,Integer)
+            If (Original_Petto Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_Petto,String)
             End If
-            If (Original_Vita.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Vita.Value,Integer)
+            If (Original_Peso Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_Peso,String)
             End If
-            If (Original_Fianchi.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_Fianchi.Value,Integer)
+            If (Original_Altezza Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_Altezza,String)
             End If
-            If (Original_Età.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_Età.Value,Integer)
+            If (Original_Età Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Peso.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_Peso.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_Età,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -2421,52 +2359,52 @@ Namespace AccountDataSetTableAdapters
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("Username", "Username")
             tableMapping.ColumnMappings.Add("Password", "Password")
-            tableMapping.ColumnMappings.Add("CodiceSegreto", "CodiceSegreto")
+            tableMapping.ColumnMappings.Add("Sesso", "Sesso")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM `Utenti` WHERE ((`ID` = ?) AND ((? = 1 AND `Username` IS NULL) OR (`U"& _ 
                 "sername` = ?)) AND ((? = 1 AND `Password` IS NULL) OR (`Password` = ?)) AND ((? "& _ 
-                "= 1 AND `CodiceSegreto` IS NULL) OR (`CodiceSegreto` = ?)))"
+                "= 1 AND `Sesso` IS NULL) OR (`Sesso` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Username", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Username", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Username", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Username", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Password", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Password", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Password", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Password", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_CodiceSegreto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CodiceSegreto", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_CodiceSegreto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CodiceSegreto", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Sesso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Sesso", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Sesso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Sesso", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `Utenti` (`Username`, `Password`, `CodiceSegreto`) VALUES (?, ?, ?)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `Utenti` (`Username`, `Password`, `Sesso`) VALUES (?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Username", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Username", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Password", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Password", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("CodiceSegreto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CodiceSegreto", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Sesso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Sesso", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `Utenti` SET `Username` = ?, `Password` = ?, `CodiceSegreto` = ? WHERE ((`"& _ 
-                "ID` = ?) AND ((? = 1 AND `Username` IS NULL) OR (`Username` = ?)) AND ((? = 1 AN"& _ 
-                "D `Password` IS NULL) OR (`Password` = ?)) AND ((? = 1 AND `CodiceSegreto` IS NU"& _ 
-                "LL) OR (`CodiceSegreto` = ?)))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `Utenti` SET `Username` = ?, `Password` = ?, `Sesso` = ? WHERE ((`ID` = ?)"& _ 
+                " AND ((? = 1 AND `Username` IS NULL) OR (`Username` = ?)) AND ((? = 1 AND `Passw"& _ 
+                "ord` IS NULL) OR (`Password` = ?)) AND ((? = 1 AND `Sesso` IS NULL) OR (`Sesso` "& _ 
+                "= ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Username", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Username", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Password", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Password", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("CodiceSegreto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CodiceSegreto", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Sesso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Sesso", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Username", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Username", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Username", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Username", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Password", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Password", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Password", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Password", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_CodiceSegreto", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CodiceSegreto", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_CodiceSegreto", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CodiceSegreto", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Sesso", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Sesso", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Sesso", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Sesso", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.OleDb.OleDbConnection()
-            Me._connection.ConnectionString = Global.AppMotoria.My.MySettings.Default.AccountConnectionString
+            Me._connection.ConnectionString = Global.AppMotoria.My.MySettings.Default.AppDBConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2475,7 +2413,7 @@ Namespace AccountDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, Username, [Password], CodiceSegreto FROM Utenti"
+            Me._commandCollection(0).CommandText = "SELECT ID, Username, [Password], Sesso FROM Utenti"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -2483,7 +2421,7 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As AccountDataSet.UtentiDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As AppDBDataSet.UtentiDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -2496,9 +2434,9 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As AccountDataSet.UtentiDataTable
+        Public Overloads Overridable Function GetData() As AppDBDataSet.UtentiDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As AccountDataSet.UtentiDataTable = New AccountDataSet.UtentiDataTable()
+            Dim dataTable As AppDBDataSet.UtentiDataTable = New AppDBDataSet.UtentiDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -2506,14 +2444,14 @@ Namespace AccountDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As AccountDataSet.UtentiDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As AppDBDataSet.UtentiDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As AccountDataSet) As Integer
+        Public Overloads Overridable Function Update(ByVal dataSet As AppDBDataSet) As Integer
             Return Me.Adapter.Update(dataSet, "Utenti")
         End Function
         
@@ -2535,7 +2473,7 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_Username As String, ByVal Original_Password As String, ByVal Original_CodiceSegreto As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_Username As String, ByVal Original_Password As String, ByVal Original_Sesso As String) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
             If (Original_Username Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
@@ -2551,12 +2489,12 @@ Namespace AccountDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Password,String)
             End If
-            If (Original_CodiceSegreto Is Nothing) Then
+            If (Original_Sesso Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_CodiceSegreto,String)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Sesso,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -2577,7 +2515,7 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Username As String, ByVal Password As String, ByVal CodiceSegreto As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal Username As String, ByVal Password As String, ByVal Sesso As String) As Integer
             If (Username Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -2588,10 +2526,10 @@ Namespace AccountDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(Password,String)
             End If
-            If (CodiceSegreto Is Nothing) Then
+            If (Sesso Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(CodiceSegreto,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Sesso,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -2612,7 +2550,7 @@ Namespace AccountDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Username As String, ByVal Password As String, ByVal CodiceSegreto As String, ByVal Original_ID As Integer, ByVal Original_Username As String, ByVal Original_Password As String, ByVal Original_CodiceSegreto As String) As Integer
+        Public Overloads Overridable Function Update(ByVal Username As String, ByVal Password As String, ByVal Sesso As String, ByVal Original_ID As Integer, ByVal Original_Username As String, ByVal Original_Password As String, ByVal Original_Sesso As String) As Integer
             If (Username Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -2623,10 +2561,10 @@ Namespace AccountDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Password,String)
             End If
-            If (CodiceSegreto Is Nothing) Then
+            If (Sesso Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(CodiceSegreto,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Sesso,String)
             End If
             Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Original_ID,Integer)
             If (Original_Username Is Nothing) Then
@@ -2643,12 +2581,12 @@ Namespace AccountDataSetTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(6).Value = CType(0,Object)
                 Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_Password,String)
             End If
-            If (Original_CodiceSegreto Is Nothing) Then
+            If (Original_Sesso Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_CodiceSegreto,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Sesso,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -2781,7 +2719,7 @@ Namespace AccountDataSetTableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Function UpdateUpdatedRows(ByVal dataSet As AccountDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateUpdatedRows(ByVal dataSet As AppDBDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
             If (Not (Me._utentiTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.Utenti.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
@@ -2809,7 +2747,7 @@ Namespace AccountDataSetTableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Function UpdateInsertedRows(ByVal dataSet As AccountDataSet, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateInsertedRows(ByVal dataSet As AppDBDataSet, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
             If (Not (Me._utentiTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.Utenti.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
@@ -2835,7 +2773,7 @@ Namespace AccountDataSetTableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Function UpdateDeletedRows(ByVal dataSet As AccountDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateDeletedRows(ByVal dataSet As AppDBDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
             If (Not (Me._informazioniTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.Informazioni.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
@@ -2887,7 +2825,7 @@ Namespace AccountDataSetTableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overridable Function UpdateAll(ByVal dataSet As AccountDataSet) As Integer
+        Public Overridable Function UpdateAll(ByVal dataSet As AppDBDataSet) As Integer
             If (dataSet Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("dataSet")
             End If
