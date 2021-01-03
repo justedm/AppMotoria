@@ -170,10 +170,10 @@ Public Class Home
 
     Sub loadBMI()
         'Carica i dati
-        Dim idSearch As String = "SELECT ID FROM Utenti WHERE Username = @Username"
+        Dim cmdSearchID As String = "SELECT ID FROM Utenti WHERE Username = @Username"
         Dim idFound As String
 
-        Using cmdRead = New OleDbCommand(idSearch, conn)
+        Using cmdRead = New OleDbCommand(cmdSearchID, conn)
             cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
             If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -182,19 +182,19 @@ Public Class Home
             cmdRead.Dispose()
         End Using
 
-        Dim pesoSearch As String = "SELECT Peso FROM Informazioni WHERE ID_User = @ID_User"
-        Dim altezzaSearch As String = "SELECT Altezza FROM Informazioni WHERE ID_User = @ID_User"
+        Dim cmdPeso As String = "SELECT TOP 1 Peso FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+        Dim cmdAltezza As String = "SELECT TOP 1 Altezza FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
         Dim peso As Double
         Dim altezza As Integer
 
         'Prende Peso
-        Using getData = New OleDbCommand(pesoSearch, conn)
+        Using getData = New OleDbCommand(cmdPeso, conn)
             getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
 
             peso = getData.ExecuteScalar
         End Using
         'Prende altezza
-        Using getData = New OleDbCommand(altezzaSearch, conn)
+        Using getData = New OleDbCommand(cmdAltezza, conn)
             getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
 
             altezza = getData.ExecuteScalar
@@ -449,8 +449,6 @@ Public Class Home
                     cmdSesso.ExecuteNonQuery()
                     cmdSesso.Dispose()
                 End Using
-
-
 
                 My.Settings.arrayUtenti.Remove(My.Settings.currentUser)
                 My.Settings.Save()
