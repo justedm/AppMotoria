@@ -244,7 +244,7 @@ Public Class Home
 
     Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
 
-        If Not (Char.IsNumber(e.KeyChar) OrElse e.KeyChar = "." OrElse Char.IsControl(e.KeyChar)) Then
+        If Not (Char.IsNumber(e.KeyChar) OrElse e.KeyChar = "," OrElse e.KeyChar = "." OrElse Char.IsControl(e.KeyChar)) Then
             e.Handled = True
         End If
 
@@ -373,7 +373,7 @@ Public Class Home
                     End If
                 ElseIf tb.Name = "txtPeso" Then
                     If Double.TryParse(tb.Text, vbNull) Then
-                        values.Add(tb.Text)
+                        values.Add(tb.Text.Replace(".", ","))
                     End If
                     'Se il nome non è ne "txtSesso" ne "txtEta"
                 Else
