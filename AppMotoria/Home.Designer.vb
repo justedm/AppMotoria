@@ -22,6 +22,7 @@ Partial Class Home
     'Non modificarla mediante l'editor del codice.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Home))
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape2 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
@@ -102,10 +103,14 @@ Partial Class Home
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.boxEta = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.tabCalcoli = New System.Windows.Forms.TabPage()
+        Me.txtFM = New System.Windows.Forms.TextBox()
+        Me.lblFM = New System.Windows.Forms.Label()
         Me.lblBMI = New System.Windows.Forms.Label()
         Me.txtBMI = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ShapeContainer4 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
+        Me.LineShape18 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.RectangleShape16 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.LineShape17 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.RectangleShape15 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.tabControl = New System.Windows.Forms.TabControl()
@@ -116,6 +121,7 @@ Partial Class Home
         Me.RectangleShape13 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.LineShape13 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.RectangleShape12 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
+        Me.tooltipFM = New System.Windows.Forms.ToolTip(Me.components)
         Me.panelLogout.SuspendLayout()
         CType(Me.imgLogout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelCalcoli.SuspendLayout()
@@ -1024,6 +1030,8 @@ Partial Class Home
         'tabCalcoli
         '
         Me.tabCalcoli.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.tabCalcoli.Controls.Add(Me.txtFM)
+        Me.tabCalcoli.Controls.Add(Me.lblFM)
         Me.tabCalcoli.Controls.Add(Me.lblBMI)
         Me.tabCalcoli.Controls.Add(Me.txtBMI)
         Me.tabCalcoli.Controls.Add(Me.Label1)
@@ -1034,6 +1042,31 @@ Partial Class Home
         Me.tabCalcoli.Size = New System.Drawing.Size(630, 396)
         Me.tabCalcoli.TabIndex = 0
         Me.tabCalcoli.Text = "tabCalcoli"
+        '
+        'txtFM
+        '
+        Me.txtFM.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.txtFM.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtFM.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtFM.ForeColor = System.Drawing.Color.White
+        Me.txtFM.Location = New System.Drawing.Point(81, 70)
+        Me.txtFM.Name = "txtFM"
+        Me.txtFM.ReadOnly = True
+        Me.txtFM.Size = New System.Drawing.Size(134, 25)
+        Me.txtFM.TabIndex = 21
+        Me.txtFM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'lblFM
+        '
+        Me.lblFM.AutoSize = True
+        Me.lblFM.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFM.ForeColor = System.Drawing.Color.White
+        Me.lblFM.Location = New System.Drawing.Point(22, 69)
+        Me.lblFM.Name = "lblFM"
+        Me.lblFM.Padding = New System.Windows.Forms.Padding(5)
+        Me.lblFM.Size = New System.Drawing.Size(53, 28)
+        Me.lblFM.TabIndex = 20
+        Me.lblFM.Text = "%FM"
         '
         'lblBMI
         '
@@ -1075,10 +1108,32 @@ Partial Class Home
         Me.ShapeContainer4.Location = New System.Drawing.Point(3, 3)
         Me.ShapeContainer4.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer4.Name = "ShapeContainer4"
-        Me.ShapeContainer4.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape17, Me.RectangleShape15})
+        Me.ShapeContainer4.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape18, Me.RectangleShape16, Me.LineShape17, Me.RectangleShape15})
         Me.ShapeContainer4.Size = New System.Drawing.Size(624, 390)
         Me.ShapeContainer4.TabIndex = 0
         Me.ShapeContainer4.TabStop = False
+        '
+        'LineShape18
+        '
+        Me.LineShape18.BorderColor = System.Drawing.Color.FromArgb(CType(CType(106, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(155, Byte), Integer))
+        Me.LineShape18.Name = "LineShape18"
+        Me.LineShape18.SelectionColor = System.Drawing.Color.Transparent
+        Me.LineShape18.X1 = 75
+        Me.LineShape18.X2 = 75
+        Me.LineShape18.Y1 = 63
+        Me.LineShape18.Y2 = 95
+        '
+        'RectangleShape16
+        '
+        Me.RectangleShape16.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.RectangleShape16.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.RectangleShape16.BorderColor = System.Drawing.Color.FromArgb(CType(CType(106, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(155, Byte), Integer))
+        Me.RectangleShape16.CornerRadius = 3
+        Me.RectangleShape16.Cursor = System.Windows.Forms.Cursors.Default
+        Me.RectangleShape16.Location = New System.Drawing.Point(16, 63)
+        Me.RectangleShape16.Name = "RectangleShape16"
+        Me.RectangleShape16.SelectionColor = System.Drawing.Color.Transparent
+        Me.RectangleShape16.Size = New System.Drawing.Size(199, 32)
         '
         'LineShape17
         '
@@ -1324,4 +1379,9 @@ Partial Class Home
     Friend WithEvents RectangleShape13 As PowerPacks.RectangleShape
     Friend WithEvents LineShape13 As PowerPacks.LineShape
     Friend WithEvents RectangleShape12 As PowerPacks.RectangleShape
+    Friend WithEvents RectangleShape16 As PowerPacks.RectangleShape
+    Friend WithEvents lblFM As Label
+    Friend WithEvents LineShape18 As PowerPacks.LineShape
+    Friend WithEvents tooltipFM As ToolTip
+    Friend WithEvents txtFM As TextBox
 End Class

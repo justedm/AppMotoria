@@ -46,6 +46,7 @@ Public Class Home
             tabControl.SelectedTab = tabPrimoInserimento
         Else
             loadBMI()
+            loadFM()
         End If
 
         lblSave.Location = New Point(lblSave.Location.X, lblSave.Location.Y + 20)
@@ -71,8 +72,6 @@ Public Class Home
 
             End If
         End Using
-
-
 
         TextBox1.Select()
 
@@ -156,6 +155,7 @@ Public Class Home
 
             TextBox1.Select()
             loadBMI()
+            loadFM()
 
         ElseIf obj.Name = "lblDati" Or obj.Name = "imgDati" Or obj.Name = "panelDati" Then
             tabControl.SelectedTab = tabPrimoInserimento
@@ -167,7 +167,9 @@ Public Class Home
             TextBox1.Select()
         End If
     End Sub
+#End Region
 
+#Region "Load dati"
     Sub loadBMI()
         'Carica i dati
         Dim cmdSearchID As String = "SELECT ID FROM Utenti WHERE Username = @Username"
@@ -229,6 +231,121 @@ Public Class Home
         End If
 
     End Sub
+
+    Sub loadFM()
+        Dim cmdSearchID As String = "SELECT ID FROM Utenti WHERE Username = @Username"
+        Dim idFound As String
+
+        Using cmdRead = New OleDbCommand(cmdSearchID, conn)
+            cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            idFound = cmdRead.ExecuteScalar()
+
+            cmdRead.Dispose()
+        End Using
+
+        Dim cmdSesso As String = "SELECT Sesso FROM Utenti WHERE Username = @Username"
+        Dim cmdEta As String = "SELECT TOP 1 Età FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+        Dim sesso As String
+        Dim eta As Integer
+
+        Using getData = New OleDbCommand(cmdSesso, conn)
+            getData.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            If Not IsDBNull(getData.ExecuteScalar) Then
+                sesso = getData.ExecuteScalar
+            Else
+                txtFM.Text = "Inserisci dei dati"
+            End If
+
+            getData.Dispose()
+        End Using
+
+        Using getData = New OleDbCommand(cmdEta, conn)
+            getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            eta = getData.ExecuteScalar
+            getData.Dispose()
+        End Using
+
+        If sesso = "Maschio" Then
+            'Prende Addome
+            Dim cmdAddome As String = "SELECT TOP 1 Addome FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+            Dim addome As Double
+
+            Using getData = New OleDbCommand(cmdAddome, conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+
+                addome = getData.ExecuteScalar
+            End Using
+
+            'Prende Petto
+            Dim cmdPetto As String = "SELECT TOP 1 Petto FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+            Dim petto As Double
+
+            Using getData = New OleDbCommand(cmdPetto, conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+
+                petto = getData.ExecuteScalar
+            End Using
+
+            'Prende Coscia
+            Dim cmdCoscia As String = "SELECT TOP 1 Coscia FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+            Dim coscia As Double
+
+            Using getData = New OleDbCommand(cmdCoscia, conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+
+                coscia = getData.ExecuteScalar
+            End Using
+
+            Dim densCorp As Double = 1.10938 - (0.0008267 * (addome + petto + coscia)) + (0.0000016 * (addome + petto + coscia)) - (0.0002574 * eta)
+            Dim fm As Double = (495 / densCorp) - 450
+
+            txtFM.Text = fm.ToString("0.0")
+
+        ElseIf sesso = "Femmina" Then
+            'Prende Fianchi
+            Dim cmdFianchi As String = "SELECT TOP 1 Fianchi FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+            Dim fianchi As Double
+
+            Using getData = New OleDbCommand(cmdFianchi, conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+
+                fianchi = getData.ExecuteScalar
+            End Using
+
+            'Prende Tricipite
+            Dim cmdTricipite As String = "SELECT TOP 1 Tricipite FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+            Dim tricipite As Double
+
+            Using getData = New OleDbCommand(cmdTricipite, conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+
+                tricipite = getData.ExecuteScalar
+            End Using
+
+            'Prende Coscia
+            Dim cmdCoscia As String = "SELECT TOP 1 Coscia FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+            Dim coscia As Double
+
+            Using getData = New OleDbCommand(cmdCoscia, conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+
+                coscia = getData.ExecuteScalar
+            End Using
+
+            Dim densCorp As Double = 1.0994921 - (0.0009929 * (fianchi + tricipite + coscia)) + (0.0000023 * (fianchi + tricipite + coscia)) - (0.0001392 * eta)
+            Dim fm As Double = (495 / densCorp) - 450
+
+            txtFM.Text = fm.ToString("0.0") + "%"
+
+        End If
+    End Sub
+
 #End Region
 
 #Region "Text Check"
@@ -495,5 +612,9 @@ Public Class Home
         '[10] - Altezza
         '[11] - Età
     End Sub
+
 #End Region
+    Private Sub Label2_MouseHover(sender As Object, e As EventArgs) Handles lblFM.MouseHover
+        tooltipFM.SetToolTip(lblFM, "Percentuale massa grassa")
+    End Sub
 End Class
