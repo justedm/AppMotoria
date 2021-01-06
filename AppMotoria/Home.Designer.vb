@@ -40,6 +40,13 @@ Partial Class Home
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.tabPrimoInserimento = New System.Windows.Forms.TabPage()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.lblMsgTricipite = New System.Windows.Forms.Label()
         Me.lblMsgTorace = New System.Windows.Forms.Label()
         Me.lblMsgAddome = New System.Windows.Forms.Label()
@@ -204,7 +211,8 @@ Partial Class Home
         Me.panelCalcoli.Controls.Add(Me.lblCalcoli)
         Me.panelCalcoli.Controls.Add(Me.imgCalcoli)
         Me.panelCalcoli.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.panelCalcoli.Location = New System.Drawing.Point(0, 180)
+        Me.panelCalcoli.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.panelCalcoli.Location = New System.Drawing.Point(0, 182)
         Me.panelCalcoli.Name = "panelCalcoli"
         Me.panelCalcoli.Size = New System.Drawing.Size(165, 34)
         Me.panelCalcoli.TabIndex = 13
@@ -214,7 +222,7 @@ Partial Class Home
         Me.lblCalcoli.AutoSize = True
         Me.lblCalcoli.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCalcoli.ForeColor = System.Drawing.Color.White
-        Me.lblCalcoli.Location = New System.Drawing.Point(47, 6)
+        Me.lblCalcoli.Location = New System.Drawing.Point(45, 4)
         Me.lblCalcoli.Name = "lblCalcoli"
         Me.lblCalcoli.Size = New System.Drawing.Size(66, 24)
         Me.lblCalcoli.TabIndex = 12
@@ -224,7 +232,7 @@ Partial Class Home
         '
         Me.imgCalcoli.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(49, Byte), Integer))
         Me.imgCalcoli.Image = Global.AppMotoria.My.Resources.Resources.calcolatore
-        Me.imgCalcoli.Location = New System.Drawing.Point(11, 2)
+        Me.imgCalcoli.Location = New System.Drawing.Point(7, 1)
         Me.imgCalcoli.Name = "imgCalcoli"
         Me.imgCalcoli.Size = New System.Drawing.Size(30, 30)
         Me.imgCalcoli.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -237,7 +245,7 @@ Partial Class Home
         Me.panelDati.Controls.Add(Me.imgDati)
         Me.panelDati.Controls.Add(Me.lblDati)
         Me.panelDati.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.panelDati.Location = New System.Drawing.Point(0, 220)
+        Me.panelDati.Location = New System.Drawing.Point(0, 223)
         Me.panelDati.Name = "panelDati"
         Me.panelDati.Size = New System.Drawing.Size(165, 34)
         Me.panelDati.TabIndex = 14
@@ -246,7 +254,7 @@ Partial Class Home
         '
         Me.imgDati.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(49, Byte), Integer))
         Me.imgDati.Image = Global.AppMotoria.My.Resources.Resources.dati
-        Me.imgDati.Location = New System.Drawing.Point(10, 2)
+        Me.imgDati.Location = New System.Drawing.Point(8, 2)
         Me.imgDati.Name = "imgDati"
         Me.imgDati.Size = New System.Drawing.Size(30, 30)
         Me.imgDati.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -258,7 +266,7 @@ Partial Class Home
         Me.lblDati.AutoSize = True
         Me.lblDati.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDati.ForeColor = System.Drawing.Color.White
-        Me.lblDati.Location = New System.Drawing.Point(47, 5)
+        Me.lblDati.Location = New System.Drawing.Point(46, 5)
         Me.lblDati.Name = "lblDati"
         Me.lblDati.Size = New System.Drawing.Size(41, 24)
         Me.lblDati.TabIndex = 12
@@ -297,6 +305,13 @@ Partial Class Home
         'tabPrimoInserimento
         '
         Me.tabPrimoInserimento.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.tabPrimoInserimento.Controls.Add(Me.Label12)
+        Me.tabPrimoInserimento.Controls.Add(Me.Label11)
+        Me.tabPrimoInserimento.Controls.Add(Me.Label10)
+        Me.tabPrimoInserimento.Controls.Add(Me.Label9)
+        Me.tabPrimoInserimento.Controls.Add(Me.Label8)
+        Me.tabPrimoInserimento.Controls.Add(Me.Label7)
+        Me.tabPrimoInserimento.Controls.Add(Me.Label2)
         Me.tabPrimoInserimento.Controls.Add(Me.lblMsgTricipite)
         Me.tabPrimoInserimento.Controls.Add(Me.lblMsgTorace)
         Me.tabPrimoInserimento.Controls.Add(Me.lblMsgAddome)
@@ -342,6 +357,83 @@ Partial Class Home
         Me.tabPrimoInserimento.Size = New System.Drawing.Size(630, 396)
         Me.tabPrimoInserimento.TabIndex = 2
         Me.tabPrimoInserimento.Text = "tabPrimo"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.White
+        Me.Label12.Location = New System.Drawing.Point(268, 326)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(37, 13)
+        Me.Label12.TabIndex = 46
+        Me.Label12.Text = "In MM"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.White
+        Me.Label11.Location = New System.Drawing.Point(268, 134)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(37, 13)
+        Me.Label11.TabIndex = 45
+        Me.Label11.Text = "In MM"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.White
+        Me.Label10.Location = New System.Drawing.Point(269, 278)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(37, 13)
+        Me.Label10.TabIndex = 44
+        Me.Label10.Text = "In MM"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.White
+        Me.Label9.Location = New System.Drawing.Point(269, 229)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(37, 13)
+        Me.Label9.TabIndex = 43
+        Me.Label9.Text = "In MM"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.White
+        Me.Label8.Location = New System.Drawing.Point(269, 182)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(37, 13)
+        Me.Label8.TabIndex = 42
+        Me.Label8.Text = "In MM"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.White
+        Me.Label7.Location = New System.Drawing.Point(268, 86)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(37, 13)
+        Me.Label7.TabIndex = 41
+        Me.Label7.Text = "In MM"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(268, 38)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(37, 13)
+        Me.Label2.TabIndex = 40
+        Me.Label2.Text = "In MM"
         '
         'lblMsgTricipite
         '
@@ -648,7 +740,7 @@ Partial Class Home
         Me.lblCoscia.AutoSize = True
         Me.lblCoscia.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCoscia.ForeColor = System.Drawing.Color.White
-        Me.lblCoscia.Location = New System.Drawing.Point(261, 315)
+        Me.lblCoscia.Location = New System.Drawing.Point(261, 309)
         Me.lblCoscia.Name = "lblCoscia"
         Me.lblCoscia.Size = New System.Drawing.Size(55, 18)
         Me.lblCoscia.TabIndex = 10
@@ -670,7 +762,7 @@ Partial Class Home
         Me.lblFianchi.AutoSize = True
         Me.lblFianchi.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFianchi.ForeColor = System.Drawing.Color.White
-        Me.lblFianchi.Location = New System.Drawing.Point(261, 267)
+        Me.lblFianchi.Location = New System.Drawing.Point(261, 261)
         Me.lblFianchi.Name = "lblFianchi"
         Me.lblFianchi.Size = New System.Drawing.Size(55, 18)
         Me.lblFianchi.TabIndex = 8
@@ -681,7 +773,7 @@ Partial Class Home
         Me.lblTorace.AutoSize = True
         Me.lblTorace.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTorace.ForeColor = System.Drawing.Color.White
-        Me.lblTorace.Location = New System.Drawing.Point(261, 123)
+        Me.lblTorace.Location = New System.Drawing.Point(261, 117)
         Me.lblTorace.Name = "lblTorace"
         Me.lblTorace.Size = New System.Drawing.Size(55, 18)
         Me.lblTorace.TabIndex = 7
@@ -692,7 +784,7 @@ Partial Class Home
         Me.lblVita.AutoSize = True
         Me.lblVita.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblVita.ForeColor = System.Drawing.Color.White
-        Me.lblVita.Location = New System.Drawing.Point(273, 218)
+        Me.lblVita.Location = New System.Drawing.Point(271, 212)
         Me.lblVita.Name = "lblVita"
         Me.lblVita.Size = New System.Drawing.Size(32, 18)
         Me.lblVita.TabIndex = 6
@@ -703,7 +795,7 @@ Partial Class Home
         Me.lblTricipite.AutoSize = True
         Me.lblTricipite.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTricipite.ForeColor = System.Drawing.Color.White
-        Me.lblTricipite.Location = New System.Drawing.Point(259, 74)
+        Me.lblTricipite.Location = New System.Drawing.Point(259, 69)
         Me.lblTricipite.Name = "lblTricipite"
         Me.lblTricipite.Size = New System.Drawing.Size(59, 18)
         Me.lblTricipite.TabIndex = 5
@@ -714,7 +806,7 @@ Partial Class Home
         Me.lblAddome.AutoSize = True
         Me.lblAddome.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAddome.ForeColor = System.Drawing.Color.White
-        Me.lblAddome.Location = New System.Drawing.Point(257, 171)
+        Me.lblAddome.Location = New System.Drawing.Point(257, 165)
         Me.lblAddome.Name = "lblAddome"
         Me.lblAddome.Size = New System.Drawing.Size(63, 18)
         Me.lblAddome.TabIndex = 4
@@ -725,7 +817,7 @@ Partial Class Home
         Me.lblPetto.AutoSize = True
         Me.lblPetto.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPetto.ForeColor = System.Drawing.Color.White
-        Me.lblPetto.Location = New System.Drawing.Point(267, 27)
+        Me.lblPetto.Location = New System.Drawing.Point(266, 21)
         Me.lblPetto.Name = "lblPetto"
         Me.lblPetto.Size = New System.Drawing.Size(43, 18)
         Me.lblPetto.TabIndex = 3
@@ -1052,7 +1144,7 @@ Partial Class Home
         Me.txtFM.Location = New System.Drawing.Point(81, 70)
         Me.txtFM.Name = "txtFM"
         Me.txtFM.ReadOnly = True
-        Me.txtFM.Size = New System.Drawing.Size(134, 25)
+        Me.txtFM.Size = New System.Drawing.Size(137, 25)
         Me.txtFM.TabIndex = 21
         Me.txtFM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1073,7 +1165,7 @@ Partial Class Home
         Me.lblBMI.AutoSize = True
         Me.lblBMI.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBMI.ForeColor = System.Drawing.Color.White
-        Me.lblBMI.Location = New System.Drawing.Point(221, 26)
+        Me.lblBMI.Location = New System.Drawing.Point(224, 26)
         Me.lblBMI.Name = "lblBMI"
         Me.lblBMI.Size = New System.Drawing.Size(108, 18)
         Me.lblBMI.TabIndex = 19
@@ -1088,7 +1180,7 @@ Partial Class Home
         Me.txtBMI.Location = New System.Drawing.Point(81, 23)
         Me.txtBMI.Name = "txtBMI"
         Me.txtBMI.ReadOnly = True
-        Me.txtBMI.Size = New System.Drawing.Size(134, 25)
+        Me.txtBMI.Size = New System.Drawing.Size(137, 25)
         Me.txtBMI.TabIndex = 18
         Me.txtBMI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1133,7 +1225,7 @@ Partial Class Home
         Me.RectangleShape16.Location = New System.Drawing.Point(16, 63)
         Me.RectangleShape16.Name = "RectangleShape16"
         Me.RectangleShape16.SelectionColor = System.Drawing.Color.Transparent
-        Me.RectangleShape16.Size = New System.Drawing.Size(199, 32)
+        Me.RectangleShape16.Size = New System.Drawing.Size(202, 32)
         '
         'LineShape17
         '
@@ -1155,7 +1247,7 @@ Partial Class Home
         Me.RectangleShape15.Location = New System.Drawing.Point(16, 16)
         Me.RectangleShape15.Name = "RectangleShape15"
         Me.RectangleShape15.SelectionColor = System.Drawing.Color.Transparent
-        Me.RectangleShape15.Size = New System.Drawing.Size(199, 32)
+        Me.RectangleShape15.Size = New System.Drawing.Size(202, 32)
         '
         'tabControl
         '
@@ -1384,4 +1476,11 @@ Partial Class Home
     Friend WithEvents LineShape18 As PowerPacks.LineShape
     Friend WithEvents tooltipFM As ToolTip
     Friend WithEvents txtFM As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label7 As Label
 End Class

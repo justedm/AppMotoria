@@ -29,47 +29,42 @@ Public Class Home
         tabControl.SizeMode = TabSizeMode.Fixed
         tabControl.SendToBack()
 
+        'Imposta tutti i label dei dati non visibili
         Dim lblList = {"lblMsgEta", "lblMsgAltezza", "lblMsgPeso", "lblMsgSesso", "lblMsgPetto", "lblMsgTricipite", "lblMsgTorace", "lblMsgAddome", "lblMsgVita", "lblMsgFianchi", "lblMsgCoscia"}
-
         For Each lbl In lblList
             With tabControl.TabPages(1).Controls(lbl)
                 .Visible = False
             End With
         Next
-        lblBMI.Visible = False
+        lblBMI.Text = ""
 
+        'Se l'arrayUtenti non esiste lo crea
         If My.Settings.arrayUtenti Is Nothing Then
             My.Settings.arrayUtenti = New System.Collections.Specialized.StringCollection
         End If
-
+        'Se l'array contiene l'utente loggato nell'app seleziona la scheda dei dati come principale
         If My.Settings.arrayUtenti.Contains(My.Settings.currentUser) Then
             tabControl.SelectedTab = tabPrimoInserimento
+            openTab(sender, "Dati")
         Else
             loadBMI()
             loadFM()
+            openTab(sender, "Calcoli")
         End If
 
+        'Abbassa il bottone per salvare i dati
         lblSave.Location = New Point(lblSave.Location.X, lblSave.Location.Y + 20)
 
-        Dim sexQuery As String = "SELECT * FROM Utenti WHERE Username = @Username AND Sesso IS NOT NULL"
+        Dim selectSex As String = "SELECT Sesso FROM Utenti WHERE Username = @Username"
 
-        Using cmdRead = New OleDbCommand(sexQuery, conn)
-            cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
+        Using sexCmd = New OleDbCommand(selectSex, conn)
+            sexCmd.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
             If conn.State = ConnectionState.Closed Then conn.Open()
-            Dim reader As OleDbDataReader = cmdRead.ExecuteReader
-            cmdRead.Dispose()
 
-            If reader.Read = True Then
-                Dim selectSex As String = "select Sesso FROM Utenti WHERE Username = @Username"
-
-                Using sexCmd = New OleDbCommand(selectSex, conn)
-                    sexCmd.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
-
-                    txtSesso.Text = sexCmd.ExecuteScalar
-                    txtSesso.ReadOnly = True
-
-                End Using
-
+            If Not IsDBNull(sexCmd.ExecuteScalar) Then
+                txtSesso.Text = sexCmd.ExecuteScalar
+                txtSesso.ReadOnly = True
+                sexCmd.Dispose()
             End If
         End Using
 
@@ -91,62 +86,24 @@ Public Class Home
 #End Region
 
 #Region "Bottone logout"
-    Private Sub panelLogout_Click(sender As Object, e As EventArgs) Handles panelLogout.Click
-        logoutFunction()
-    End Sub
-
-    Private Sub lblLogout_Click(sender As Object, e As EventArgs) Handles lblLogout.Click
-        logoutFunction()
-    End Sub
-
-    Private Sub imgLogout_Click(sender As Object, e As EventArgs) Handles imgLogout.Click
-        logoutFunction()
-    End Sub
-    Sub logoutFunction()
+    Private Sub panelLogout_Click(sender As Object, e As EventArgs) Handles panelLogout.Click, lblLogout.Click, imgLogout.Click
         My.Settings.savedUsername = ""
         My.Settings.savedPassword = ""
-        My.Settings.checkRicordamiSett = False
-        My.Settings.currentUser = ""
         My.Settings.Save()
+        My.Settings.checkRicordamiSett = False
+
         Login.Show()
         Me.Close()
     End Sub
 #End Region
 
 #Region "Bottoni menu"
-    Private Sub panelCalcoli_Click(sender As Object, e As EventArgs) Handles panelCalcoli.Click
-        openTab(sender)
-        'tabControl.SelectedTab = tabDati
-        'lblCalcoli.ForeColor = Color.FromArgb(140, 180, 230)
-        'lblDati.ForeColor = Color.White
+    Private Sub Calcoli_Click(sender As Object, e As EventArgs) Handles panelCalcoli.Click, lblCalcoli.Click, imgCalcoli.Click, panelDati.Click, lblDati.Click, imgDati.Click
+        openTab(sender, "")
     End Sub
-
-    Private Sub panelDati_Click(sender As Object, e As EventArgs) Handles panelDati.Click
-        openTab(sender)
-        'tabControl.SelectedTab = tabCalcoli
-        'lblDati.ForeColor = Color.FromArgb(140, 180, 230)
-        'lblCalcoli.ForeColor = Color.White
-    End Sub
-
-    Private Sub lblCalcoli_Click(sender As Object, e As EventArgs) Handles lblCalcoli.Click
-        openTab(sender)
-    End Sub
-
-    Private Sub lblDati_Click(sender As Object, e As EventArgs) Handles lblDati.Click
-        openTab(sender)
-    End Sub
-
-    Private Sub imgCalcoli_Click(sender As Object, e As EventArgs) Handles imgCalcoli.Click
-        openTab(sender)
-    End Sub
-
-    Private Sub imgDati_Click(sender As Object, e As EventArgs) Handles imgDati.Click
-        openTab(sender)
-    End Sub
-
-    Sub openTab(sender)
+    Sub openTab(sender, home)
         Dim obj As Object = CType(sender, Object)
-        If obj.Name = "lblCalcoli" Or obj.Name = "imgCalcoli" Or obj.Name = "panelCalcoli" Then
+        If obj.Name = "lblCalcoli" Or obj.Name = "imgCalcoli" Or obj.Name = "panelCalcoli" Or home = "Calcoli" Then
             tabControl.SelectedTab = tabCalcoli
             imgCalcoli.Image = My.Resources.ResourceManager.GetObject("calcolatore_clicked")
             imgDati.Image = My.Resources.ResourceManager.GetObject("dati")
@@ -157,7 +114,7 @@ Public Class Home
             loadBMI()
             loadFM()
 
-        ElseIf obj.Name = "lblDati" Or obj.Name = "imgDati" Or obj.Name = "panelDati" Then
+        ElseIf obj.Name = "lblDati" Or obj.Name = "imgDati" Or obj.Name = "panelDati" Or home = "Dati" Then
             tabControl.SelectedTab = tabPrimoInserimento
             imgDati.Image = My.Resources.ResourceManager.GetObject("dati_clicked")
             imgCalcoli.Image = My.Resources.ResourceManager.GetObject("calcolatore")
@@ -171,39 +128,31 @@ Public Class Home
 
 #Region "Load dati"
     Sub loadBMI()
-        'Carica i dati
-        Dim cmdSearchID As String = "SELECT ID FROM Utenti WHERE Username = @Username"
-        Dim idFound As String
 
-        Using cmdRead = New OleDbCommand(cmdSearchID, conn)
-            cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
-            If conn.State = ConnectionState.Closed Then conn.Open()
-
-            idFound = cmdRead.ExecuteScalar()
-
-            cmdRead.Dispose()
-        End Using
-
-        Dim cmdPeso As String = "SELECT TOP 1 Peso FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
-        Dim cmdAltezza As String = "SELECT TOP 1 Altezza FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
         Dim peso As Double
         Dim altezza As Integer
 
-        'Prende Peso
-        Using getData = New OleDbCommand(cmdPeso, conn)
-            getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+        Using getData = New OleDbCommand("SELECT TOP 1 Peso, Altezza FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC", conn)
+            getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = My.Settings.currentUserID
+            If conn.State = ConnectionState.Closed Then conn.Open()
 
-            peso = getData.ExecuteScalar
+            Dim reader As OleDbDataReader = getData.ExecuteReader
+
+            If reader.HasRows Then
+                While reader.Read
+                    peso = reader.GetString(0)
+                    altezza = reader.GetString(1)
+                End While
+            End If
+            reader.Close()
         End Using
-        'Prende altezza
-        Using getData = New OleDbCommand(cmdAltezza, conn)
-            getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
 
-            altezza = getData.ExecuteScalar
-        End Using
 
+        'Calcolo BMI
         Dim bmi As Double = (peso / Math.Pow((altezza / 100), 2))
 
+        'Se il BMI è "NaN" richiede l'inserimento di dati
+        'altrimenti inserisce il valore del BMI nella textbox
         If bmi.ToString.Equals("NaN") Then
             txtBMI.Text = "Inserisci dei dati"
         Else
@@ -211,8 +160,7 @@ Public Class Home
             lblBMI.Visible = True
         End If
 
-
-
+        'Assegna un valore al lblBMI in base al valore di esso
         If bmi < 18.5 Then
             lblBMI.Text = "Sottopeso"
             lblBMI.ForeColor = Color.FromArgb(3, 177, 252)
@@ -229,28 +177,12 @@ Public Class Home
             lblBMI.Text = "Obeso estremo"
             lblBMI.ForeColor = Color.FromArgb(252, 3, 36)
         End If
-
     End Sub
 
     Sub loadFM()
-        Dim cmdSearchID As String = "SELECT ID FROM Utenti WHERE Username = @Username"
-        Dim idFound As String
+        Dim sesso As String = ""
 
-        Using cmdRead = New OleDbCommand(cmdSearchID, conn)
-            cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
-            If conn.State = ConnectionState.Closed Then conn.Open()
-
-            idFound = cmdRead.ExecuteScalar()
-
-            cmdRead.Dispose()
-        End Using
-
-        Dim cmdSesso As String = "SELECT Sesso FROM Utenti WHERE Username = @Username"
-        Dim cmdEta As String = "SELECT TOP 1 Età FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
-        Dim sesso As String
-        Dim eta As Integer
-
-        Using getData = New OleDbCommand(cmdSesso, conn)
+        Using getData = New OleDbCommand("SELECT Sesso FROM Utenti WHERE Username = @Username", conn)
             getData.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
             If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -263,110 +195,90 @@ Public Class Home
             getData.Dispose()
         End Using
 
-        Using getData = New OleDbCommand(cmdEta, conn)
-            getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
-            If conn.State = ConnectionState.Closed Then conn.Open()
-
-            eta = getData.ExecuteScalar
-            getData.Dispose()
-        End Using
-
         If sesso = "Maschio" Then
-            'Prende Addome
-            Dim cmdAddome As String = "SELECT TOP 1 Addome FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+
+            Dim eta As Integer
             Dim addome As Double
-
-            Using getData = New OleDbCommand(cmdAddome, conn)
-                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
-
-                addome = getData.ExecuteScalar
-            End Using
-
-            'Prende Petto
-            Dim cmdPetto As String = "SELECT TOP 1 Petto FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
             Dim petto As Double
-
-            Using getData = New OleDbCommand(cmdPetto, conn)
-                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
-
-                petto = getData.ExecuteScalar
-            End Using
-
-            'Prende Coscia
-            Dim cmdCoscia As String = "SELECT TOP 1 Coscia FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
             Dim coscia As Double
 
-            Using getData = New OleDbCommand(cmdCoscia, conn)
-                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+            Using getData = New OleDbCommand("SELECT TOP 1 Età, Addome, Petto, Coscia FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC", conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = My.Settings.currentUserID
+                If conn.State = ConnectionState.Closed Then conn.Open()
 
-                coscia = getData.ExecuteScalar
+                Dim reader As OleDbDataReader = getData.ExecuteReader
+
+                If reader.HasRows Then
+                    While reader.Read
+                        eta = reader.GetString(0)
+                        addome = reader.GetString(1)
+                        petto = reader.GetString(2)
+                        coscia = reader.GetString(3)
+                    End While
+                End If
+                reader.Close()
             End Using
 
-            Dim densCorp As Double = 1.10938 - (0.0008267 * (addome + petto + coscia)) + (0.0000016 * (addome + petto + coscia)) - (0.0002574 * eta)
+            Dim sPliche As Double = (addome + petto + coscia)
+            Dim densCorp As Double = 1.10938 - (0.0008267 * sPliche) + (0.0000016 * Math.Pow(sPliche, 2)) - (0.0002574 * eta)
             Dim fm As Double = (495 / densCorp) - 450
 
-            txtFM.Text = fm.ToString("0.0")
+            txtFM.Text = fm.ToString("0.00") & "%"
 
         ElseIf sesso = "Femmina" Then
-            'Prende Fianchi
-            Dim cmdFianchi As String = "SELECT TOP 1 Fianchi FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
+
+            Dim eta As Integer
             Dim fianchi As Double
-
-            Using getData = New OleDbCommand(cmdFianchi, conn)
-                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
-
-                fianchi = getData.ExecuteScalar
-            End Using
-
-            'Prende Tricipite
-            Dim cmdTricipite As String = "SELECT TOP 1 Tricipite FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
             Dim tricipite As Double
-
-            Using getData = New OleDbCommand(cmdTricipite, conn)
-                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
-
-                tricipite = getData.ExecuteScalar
-            End Using
-
-            'Prende Coscia
-            Dim cmdCoscia As String = "SELECT TOP 1 Coscia FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC"
             Dim coscia As Double
 
-            Using getData = New OleDbCommand(cmdCoscia, conn)
-                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
+            Using getData = New OleDbCommand("SELECT TOP 1 Età, Fianchi, Tricipite, Coscia FROM Informazioni WHERE ID_User = @ID_User ORDER BY id DESC", conn)
+                getData.Parameters.Add("ID_User", OleDbType.VarChar).Value = My.Settings.currentUserID
+                If conn.State = ConnectionState.Closed Then conn.Open()
 
-                coscia = getData.ExecuteScalar
+                Dim reader As OleDbDataReader = getData.ExecuteReader
+
+                If reader.HasRows Then
+                    While reader.Read
+                        eta = reader.GetString(0)
+                        fianchi = reader.GetString(1)
+                        tricipite = reader.GetString(2)
+                        coscia = reader.GetString(3)
+                    End While
+                End If
+                reader.Close()
             End Using
 
-            Dim densCorp As Double = 1.0994921 - (0.0009929 * (fianchi + tricipite + coscia)) + (0.0000023 * (fianchi + tricipite + coscia)) - (0.0001392 * eta)
+            Dim sPliche As Double = fianchi + tricipite + coscia
+            Dim densCorp As Double = 1.0902369 - (0.0009379 * sPliche) + (0.0000026 * Math.Pow(sPliche, 2)) - (0.00000979 * eta)
             Dim fm As Double = (495 / densCorp) - 450
 
-            txtFM.Text = fm.ToString("0.0") + "%"
-
+            txtFM.Text = fm.ToString("0.00") & "%"
         End If
     End Sub
-
 #End Region
 
 #Region "Text Check"
 
-    Private Sub limitToNumbers_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEta.KeyPress, txtAltezza.KeyPress, txtPetto.KeyPress,
+    'Tutti punti e virgole tranne:
+    'Età, Altezza, Sesso
+
+    Private Sub limitToNumbers_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEta.KeyPress, txtAltezza.KeyPress, txtPeso.KeyPress, txtPetto.KeyPress,
             txtTricipite.KeyPress, txtTorace.KeyPress, txtAddome.KeyPress, txtVita.KeyPress, txtFianchi.KeyPress, txtCoscia.KeyPress
 
-        If Not (Char.IsNumber(e.KeyChar) OrElse Char.IsControl(e.KeyChar)) Then
-            e.Handled = True
+        Dim obj As Object = CType(sender, Object)
+
+        If obj.name <> "txtEta" And obj.name <> "txtAltezza" And obj.name <> "txtSesso" Then
+            If Not (Char.IsNumber(e.KeyChar) OrElse e.KeyChar = "," OrElse e.KeyChar = "." OrElse Char.IsControl(e.KeyChar)) Then
+                e.Handled = True
+            End If
+        Else
+            If Not (Char.IsNumber(e.KeyChar) OrElse Char.IsControl(e.KeyChar)) Then
+                e.Handled = True
+            End If
         End If
 
     End Sub
-
-    Private Sub txtPeso_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPeso.KeyPress
-
-        If Not (Char.IsNumber(e.KeyChar) OrElse e.KeyChar = "," OrElse e.KeyChar = "." OrElse Char.IsControl(e.KeyChar)) Then
-            e.Handled = True
-        End If
-
-    End Sub
-
 
     Private Sub labelCheck_Enter(sender As Object, e As EventArgs) Handles txtEta.Enter, txtAltezza.Enter, txtPeso.Enter, txtSesso.Enter, txtPetto.Enter,
             txtTricipite.Enter, txtTorace.Enter, txtAddome.Enter, txtVita.Enter, txtFianchi.Enter, txtCoscia.Enter
@@ -450,7 +362,7 @@ Public Class Home
 
                 If tb.Name = "txtSesso" Then
                     If Integer.TryParse(tb.Text, vbNull) Then
-                        With tabControl.TabPages(2).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
+                        With tabControl.TabPages(1).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
                             .Text = "Dato non valido"
                             .Visible = True
                         End With
@@ -495,8 +407,8 @@ Public Class Home
                     'Se il nome non è ne "txtSesso" ne "txtEta"
                 Else
                     'Controlla che il valore sia un numero
-                    If Integer.TryParse(tb.Text, vbNull) Then
-                        values.Add(tb.Text)
+                    If Double.TryParse(tb.Text, vbNull) Then
+                        values.Add(tb.Text.Replace(".", ","))
                     Else
                         With tabControl.TabPages(1).Controls(tb.Name.Trim.Replace("txt", "lblMsg"))
                             .Text = "Dato non valido"
@@ -516,7 +428,6 @@ Public Class Home
             End With
         Next
 
-
         'Se tutti i dati sono stati inseriti li inserisce nel database
         If values.Count = 11 Then
             Dim msg As DialogResult = MessageBox.Show("Sei sicuro?", "Salva dati", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -525,18 +436,15 @@ Public Class Home
                 Dim idSearch As String = "SELECT ID FROM Utenti WHERE Username = @Username"
                 Dim idFound As String
 
-
                 Using cmdRead = New OleDbCommand(idSearch, conn)
                     cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
                     If conn.State = ConnectionState.Closed Then conn.Open()
-
                     idFound = cmdRead.ExecuteScalar()
 
                     cmdRead.Dispose()
                 End Using
 
                 Dim queryDati As String = "INSERT INTO Informazioni (ID_User, [Coscia], [Fianchi], [Vita], [Addome], [Torace], [Tricipite], [Petto], [Peso], [Altezza], [Età]) VALUES (@ID_User, @Coscia, @Fianchi, @Vita, @Addome, @Torace, @Tricipite, @Petto, @Peso, @Altezza, @Età)"
-
                 Using cmdAdd = New OleDbCommand(queryDati, conn)
                     cmdAdd.Parameters.Add("ID_User", OleDbType.VarChar).Value = idFound
                     cmdAdd.Parameters.Add("Coscia", OleDbType.VarChar).Value = values(0)
@@ -556,28 +464,28 @@ Public Class Home
                     cmdAdd.Dispose()
                 End Using
 
-                Dim querySesso As String = "UPDATE Utenti SET Sesso=@Sesso WHERE Username=@Username"
+                'Controlla se l'utente ha già inserito i dati dopo essersi registrato
+                If My.Settings.arrayUtenti.Contains(My.Settings.currentUser) Then
+                    'Se non ha ancora inserito dei dati aggiorna il sesso per poi rimuoverlo
+                    'dalla lista di utenti che devono ancora inserire dei dati
+                    Dim querySesso As String = "UPDATE Utenti SET Sesso=@Sesso WHERE Username=@Username"
+                    Using cmdSesso = New OleDbCommand(querySesso, conn)
+                        cmdSesso.Parameters.Add("Sesso", OleDbType.VarChar).Value = values(7)
+                        cmdSesso.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
 
-                Using cmdSesso = New OleDbCommand(querySesso, conn)
-                    cmdSesso.Parameters.Add("Sesso", OleDbType.VarChar).Value = values(7)
-                    cmdSesso.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
+                        If conn.State = ConnectionState.Closed Then conn.Open()
+                        cmdSesso.ExecuteNonQuery()
+                        cmdSesso.Dispose()
+                    End Using
 
-                    If conn.State = ConnectionState.Closed Then conn.Open()
-                    cmdSesso.ExecuteNonQuery()
-                    cmdSesso.Dispose()
-                End Using
+                    My.Settings.arrayUtenti.Remove(My.Settings.currentUser)
+                    My.Settings.Save()
+                End If
 
-                My.Settings.arrayUtenti.Remove(My.Settings.currentUser)
-                My.Settings.Save()
-
-                Dim txtBoxList As New ArrayList
+                'Cerca tutte le textbox nel form dove il nome non è "txtSesso" e rimuove il testo inserito
                 For Each txtBox As TextBox In tabControl.TabPages(1).Controls.OfType(Of TextBox)()
-                    txtBoxList.Add(txtBox.Name.Trim)
-                Next
-
-                For Each txtBox In txtBoxList
-                    If txtBox <> "txtSesso" Then
-                        With tabControl.TabPages(1).Controls(txtBox)
+                    If txtBox.Name <> "txtSesso" Then
+                        With tabControl.TabPages(1).Controls(txtBox.Name)
                             .Text = ""
                         End With
                     End If
@@ -592,13 +500,10 @@ Public Class Home
                 End If
 
                 MessageBox.Show("Dati salvati!", "Salvataggio dati", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
             End If
-
         Else
             MessageBox.Show("Inserisci tutti i dati!", "Salvataggio dati", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
-
 
         '[1] - Coscia
         '[2] - Fianchi
@@ -614,7 +519,10 @@ Public Class Home
     End Sub
 
 #End Region
-    Private Sub Label2_MouseHover(sender As Object, e As EventArgs) Handles lblFM.MouseHover
+
+#Region "ToolTip"
+    Private Sub lblFM_MouseHover(sender As Object, e As EventArgs) Handles lblFM.MouseHover
         tooltipFM.SetToolTip(lblFM, "Percentuale massa grassa")
     End Sub
+#End Region
 End Class

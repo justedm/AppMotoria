@@ -135,13 +135,11 @@ Public Class Register
 #End Region
 
 #Region "Register button"
-
     Private Sub lblRegister_Click(sender As Object, e As EventArgs) Handles lblRegister.Click
 
         Dim username = txtUsername.Text.Trim
         Dim password = txtPassword.Text.Trim
         Dim passwordConfirm = txtPasswordConfirm.Text.Trim
-
 
         If (username <> "" And username <> "Username") Then
             If (password <> "" And password <> "Password") Then
@@ -186,8 +184,6 @@ Public Class Register
                                 End If
                                 My.Settings.arrayUtenti.Add(username)
                                 My.Settings.Save()
-
-
                             End Using
                         Else
                             lblPMsgPasswordConfirm.Visible = True

@@ -111,7 +111,6 @@ Public Class Login
 
 #Region "Login button"
     Private Sub lblLogin_Click(sender As Object, e As EventArgs) Handles lblLogin.Click
-
         Dim username = txtUsername.Text.Trim
         Dim password = txtPassword.Text.Trim
 
@@ -132,15 +131,25 @@ Public Class Login
                     cmd.Dispose()
 
                     If val <> 0 Then
+
+                        Using cmdRead = New OleDbCommand("SELECT ID FROM Utenti WHERE Username = @Username", conn)
+                            cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
+                            If conn.State = ConnectionState.Closed Then conn.Open()
+
+                            My.Settings.currentUserID = cmdRead.ExecuteScalar()
+
+                            cmdRead.Dispose()
+                        End Using
+
+                        My.Settings.currentUser = username
+                        My.Settings.Save()
+
                         If checkRicordami.Checked = True Then
                             My.Settings.savedUsername = txtUsername.Text
                             My.Settings.savedPassword = txtPassword.Text
                             My.Settings.checkRicordamiSett = True
                             My.Settings.Save()
                         End If
-
-                        My.Settings.currentUser = username
-                        My.Settings.Save()
 
                         Home.Show()
                         Me.Close()
