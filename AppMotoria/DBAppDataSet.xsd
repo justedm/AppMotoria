@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="AppDBDataSet" targetNamespace="http://tempuri.org/AppDBDataSet.xsd" xmlns:mstns="http://tempuri.org/AppDBDataSet.xsd" xmlns="http://tempuri.org/AppDBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="DBAppDataSet" targetNamespace="http://tempuri.org/DBAppDataSet.xsd" xmlns:mstns="http://tempuri.org/DBAppDataSet.xsd" xmlns="http://tempuri.org/DBAppDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="AppDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AppDBConnectionString (MySettings)" PropertyReference="ApplicationSettings.AppMotoria.My.MySettings.GlobalReference.Default.AppDBConnectionString" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="DBAppConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBAppConnectionString (MySettings)" PropertyReference="ApplicationSettings.AppMotoria.My.MySettings.GlobalReference.Default.DBAppConnectionString" Provider="System.Data.OleDb" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InformazioniTableAdapter" GeneratorDataComponentClassName="InformazioniTableAdapter" Name="Informazioni" UserDataComponentName="InformazioniTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AppDBConnectionString (MySettings)" DbObjectName="Informazioni" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBAppConnectionString (MySettings)" DbObjectName="Informazioni" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `Informazioni` WHERE ((`ID` = ?) AND ((? = 1 AND `ID_User` IS NULL) OR (`ID_User` = ?)) AND ((? = 1 AND `Coscia` IS NULL) OR (`Coscia` = ?)) AND ((? = 1 AND `Fianchi` IS NULL) OR (`Fianchi` = ?)) AND ((? = 1 AND `Vita` IS NULL) OR (`Vita` = ?)) AND ((? = 1 AND `Addome` IS NULL) OR (`Addome` = ?)) AND ((? = 1 AND `Torace` IS NULL) OR (`Torace` = ?)) AND ((? = 1 AND `Tricipite` IS NULL) OR (`Tricipite` = ?)) AND ((? = 1 AND `Petto` IS NULL) OR (`Petto` = ?)) AND ((? = 1 AND `Peso` IS NULL) OR (`Peso` = ?)) AND ((? = 1 AND `Altezza` IS NULL) OR (`Altezza` = ?)) AND ((? = 1 AND `Età` IS NULL) OR (`Età` = ?)))</CommandText>
@@ -125,7 +125,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UtentiTableAdapter" GeneratorDataComponentClassName="UtentiTableAdapter" Name="Utenti" UserDataComponentName="UtentiTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AppDBConnectionString (MySettings)" DbObjectName="Utenti" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBAppConnectionString (MySettings)" DbObjectName="Utenti" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `Utenti` WHERE ((`ID` = ?) AND ((? = 1 AND `Username` IS NULL) OR (`Username` = ?)) AND ((? = 1 AND `Password` IS NULL) OR (`Password` = ?)) AND ((? = 1 AND `Sesso` IS NULL) OR (`Sesso` = ?)))</CommandText>
@@ -188,7 +188,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="AppDBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="AppDBDataSet" msprop:Generator_UserDSName="AppDBDataSet">
+  <xs:element name="DBAppDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DBAppDataSet" msprop:Generator_UserDSName="DBAppDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="Informazioni" msprop:Generator_TableClassName="InformazioniDataTable" msprop:Generator_TableVarName="tableInformazioni" msprop:Generator_TablePropName="Informazioni" msprop:Generator_RowDeletingName="InformazioniRowDeleting" msprop:Generator_RowChangingName="InformazioniRowChanging" msprop:Generator_RowEvHandlerName="InformazioniRowChangeEventHandler" msprop:Generator_RowDeletedName="InformazioniRowDeleted" msprop:Generator_UserTableName="Informazioni" msprop:Generator_RowChangedName="InformazioniRowChanged" msprop:Generator_RowEvArgName="InformazioniRowChangeEvent" msprop:Generator_RowClassName="InformazioniRow">

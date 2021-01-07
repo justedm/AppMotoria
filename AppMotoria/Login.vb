@@ -118,7 +118,7 @@ Public Class Login
         If (username <> "" And username <> "Username") Then
             If (password <> "" And password <> "Password") Then
                 Dim val As Integer
-                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\AppDB.mdb")
+                Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\DBApp.mdb")
                 Dim query As String = "select count(*) from Utenti Where StrComp([Username], @Username, 0) = 0 AND StrComp([Password], @Password, 0) = 0"
 
                 Using cmd = New OleDbCommand(query, conn)
@@ -132,6 +132,9 @@ Public Class Login
 
                     If val <> 0 Then
 
+                        My.Settings.currentUser = username
+                        My.Settings.Save()
+
                         Using cmdRead = New OleDbCommand("SELECT ID FROM Utenti WHERE Username = @Username", conn)
                             cmdRead.Parameters.Add("Username", OleDbType.VarChar).Value = My.Settings.currentUser
                             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -140,9 +143,6 @@ Public Class Login
 
                             cmdRead.Dispose()
                         End Using
-
-                        My.Settings.currentUser = username
-                        My.Settings.Save()
 
                         If checkRicordami.Checked = True Then
                             My.Settings.savedUsername = txtUsername.Text

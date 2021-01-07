@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 Imports System.Runtime.InteropServices
 Public Class Home
-    Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\AppDB.mdb")
+    Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\DBApp.mdb")
 
 #Region "Movimento form"
     Public Const WM_NCLBUTTONDOWN As Integer = 161
@@ -37,6 +37,7 @@ Public Class Home
             End With
         Next
         lblBMI.Text = ""
+        lblFMClass.Text = ""
 
         'Se l'arrayUtenti non esiste lo crea
         If My.Settings.arrayUtenti Is Nothing Then
@@ -71,6 +72,7 @@ Public Class Home
         TextBox1.Select()
 
     End Sub
+
 #End Region
 
 #Region "Pulsante chiusura"

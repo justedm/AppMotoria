@@ -109,10 +109,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppDBDataSet.Designer.vb">
+    <Compile Include="DBAppDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AppDBDataSet.xsd</DependentUpon>
+      <DependentUpon>DBAppDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Home.Designer.vb">
       <DependentUpon>Home.vb</DependentUpon>
@@ -168,18 +168,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AppDBDataSet.xsc">
-      <DependentUpon>AppDBDataSet.xsd</DependentUpon>
+    <None Include="AppMotoria_TemporaryKey.pfx" />
+    <None Include="DBAppDataSet.xsc">
+      <DependentUpon>DBAppDataSet.xsd</DependentUpon>
     </None>
-    <None Include="AppDBDataSet.xsd">
+    <None Include="DBAppDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AppDBDataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>DBAppDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="AppDBDataSet.xss">
-      <DependentUpon>AppDBDataSet.xsd</DependentUpon>
+    <None Include="DBAppDataSet.xss">
+      <DependentUpon>DBAppDataSet.xsd</DependentUpon>
     </None>
-    <None Include="AppMotoria_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -192,8 +192,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppDB.mdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="DBApp.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Img\closed-eye.png" />
     <Content Include="Img\close-red.png" />

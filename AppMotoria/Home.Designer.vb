@@ -110,6 +110,7 @@ Partial Class Home
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.boxEta = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.tabCalcoli = New System.Windows.Forms.TabPage()
+        Me.lblFMClass = New System.Windows.Forms.Label()
         Me.txtFM = New System.Windows.Forms.TextBox()
         Me.lblFM = New System.Windows.Forms.Label()
         Me.lblBMI = New System.Windows.Forms.Label()
@@ -1122,6 +1123,7 @@ Partial Class Home
         'tabCalcoli
         '
         Me.tabCalcoli.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.tabCalcoli.Controls.Add(Me.lblFMClass)
         Me.tabCalcoli.Controls.Add(Me.txtFM)
         Me.tabCalcoli.Controls.Add(Me.lblFM)
         Me.tabCalcoli.Controls.Add(Me.lblBMI)
@@ -1134,6 +1136,17 @@ Partial Class Home
         Me.tabCalcoli.Size = New System.Drawing.Size(630, 396)
         Me.tabCalcoli.TabIndex = 0
         Me.tabCalcoli.Text = "tabCalcoli"
+        '
+        'lblFMClass
+        '
+        Me.lblFMClass.AutoSize = True
+        Me.lblFMClass.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFMClass.ForeColor = System.Drawing.Color.White
+        Me.lblFMClass.Location = New System.Drawing.Point(224, 74)
+        Me.lblFMClass.Name = "lblFMClass"
+        Me.lblFMClass.Size = New System.Drawing.Size(108, 18)
+        Me.lblFMClass.TabIndex = 22
+        Me.lblFMClass.Text = "Classificazione"
         '
         'txtFM
         '
@@ -1483,4 +1496,5 @@ Partial Class Home
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents lblFMClass As Label
 End Class
