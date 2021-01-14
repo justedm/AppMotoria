@@ -224,6 +224,7 @@ Public Class Home
             Dim sPliche As Double = (addome + petto + coscia)
             Dim densCorp As Double = 1.10938 - (0.0008267 * sPliche) + (0.0000016 * Math.Pow(sPliche, 2)) - (0.0002574 * eta)
             Dim fm As Double = (495 / densCorp) - 450
+            loadLblFM(fm, eta)
 
             txtFM.Text = fm.ToString("0.00") & "%"
 
@@ -254,10 +255,113 @@ Public Class Home
             Dim sPliche As Double = fianchi + tricipite + coscia
             Dim densCorp As Double = 1.0902369 - (0.0009379 * sPliche) + (0.0000026 * Math.Pow(sPliche, 2)) - (0.00000979 * eta)
             Dim fm As Double = (495 / densCorp) - 450
+            loadLblFM(fm, eta)
 
             txtFM.Text = fm.ToString("0.00") & "%"
         End If
     End Sub
+
+    Sub loadLblFM(fm, eta)
+
+        If eta <= 25 Then
+            If fm <= 8 Then
+                lblFMClass.Text = "Molto buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 252, 111)
+            ElseIf fm > 8 And fm <= 12 Then
+                lblFMClass.Text = "Buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 177, 252)
+            ElseIf fm > 12 And fm <= 18 Then
+                lblFMClass.Text = "Medio"
+                lblFMClass.ForeColor = Color.FromArgb(252, 252, 3)
+            ElseIf fm > 18 And fm <= 25 Then
+                lblFMClass.Text = "Scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 169, 3)
+            ElseIf fm > 25 Then
+                lblFMClass.Text = "Molto scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 3, 36)
+            End If
+
+        ElseIf eta > 25 And eta <= 35 Then
+
+            If fm <= 13 Then
+                lblFMClass.Text = "Molto buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 252, 111)
+            ElseIf fm > 13 And fm <= 17 Then
+                lblFMClass.Text = "Buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 177, 252)
+            ElseIf fm > 17 And fm <= 22 Then
+                lblFMClass.Text = "Medio"
+                lblFMClass.ForeColor = Color.FromArgb(252, 252, 3)
+            ElseIf fm > 22 And fm <= 27 Then
+                lblFMClass.Text = "Scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 169, 3)
+            ElseIf fm > 27 Then
+                lblFMClass.Text = "Molto scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 3, 36)
+            End If
+
+        ElseIf eta > 35 And eta <= 45 Then
+
+            If fm <= 16 Then
+                lblFMClass.Text = "Molto buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 252, 111)
+            ElseIf fm > 16 And fm <= 20 Then
+                lblFMClass.Text = "Buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 177, 252)
+            ElseIf fm > 20 And fm <= 25 Then
+                lblFMClass.Text = "Medio"
+                lblFMClass.ForeColor = Color.FromArgb(252, 252, 3)
+            ElseIf fm > 25 And fm <= 28 Then
+                lblFMClass.Text = "Scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 169, 3)
+            ElseIf fm > 28 Then
+                lblFMClass.Text = "Molto scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 3, 36)
+            End If
+
+        ElseIf eta > 45 And eta <= 55 Then
+
+            If fm <= 18 Then
+                lblFMClass.Text = "Molto buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 252, 111)
+            ElseIf fm > 18 And fm <= 22 Then
+                lblFMClass.Text = "Buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 177, 252)
+            ElseIf fm > 22 And fm <= 26 Then
+                lblFMClass.Text = "Medio"
+                lblFMClass.ForeColor = Color.FromArgb(252, 252, 3)
+            ElseIf fm > 26 And fm <= 30 Then
+                lblFMClass.Text = "Scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 169, 3)
+            ElseIf fm > 30 Then
+                lblFMClass.Text = "Molto scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 3, 36)
+            End If
+
+        ElseIf eta > 55 Then
+
+            If fm <= 19 Then
+                lblFMClass.Text = "Molto buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 252, 111)
+            ElseIf fm > 19 And fm <= 23 Then
+                lblFMClass.Text = "Buono"
+                lblFMClass.ForeColor = Color.FromArgb(3, 177, 252)
+            ElseIf fm > 23 And fm <= 26 Then
+                lblFMClass.Text = "Medio"
+                lblFMClass.ForeColor = Color.FromArgb(252, 252, 3)
+            ElseIf fm > 26 And fm <= 30 Then
+                lblFMClass.Text = "Scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 169, 3)
+            ElseIf fm > 30 Then
+                lblFMClass.Text = "Molto scarso"
+                lblFMClass.ForeColor = Color.FromArgb(252, 3, 36)
+            End If
+
+        End If
+
+
+    End Sub
+
 #End Region
 
 #Region "Text Check"
